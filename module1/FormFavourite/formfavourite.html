@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Favourite</title>
+</head>
+<style>
+    body {
+        background-color: aqua;
+    }
+    form {
+        margin: 20px;
+        background-color: white;
+        padding: 20px;
+        place-content: center;
+    }
+    h1 {
+        background-color: #f60404;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+    p, input {
+        display: inline;
+        margin: 10px;
+    }
+    p {
+        color: #0063fd;
+        width: fit-content;
+    }
+</style>
+<body>
+    <form method="post" action="">
+        <h1>Sở thích của bạn</h1>
+        <p>Họ và tên</p>
+        <input type="text" name="name" required><br/>
+
+        <p>Email</p>
+        <input type="email" name="email" required><br/>
+
+        <p>Sở thích</p>
+        <input type="checkbox" name="favourite" value="Thể thao">Thể thao
+        <input type="checkbox" name="favourite" value="Âm nhạc">Âm nhạc
+        <input type="checkbox" name="favourite" value="Đọc sách">Đọc sách
+        <input type="checkbox" name="favourite" value="Lướt Web">Lướt Web
+        <input type="checkbox" name="favourite" value="Chơi game">Chơi game
+        <input type="checkbox" name="favourite" value="Điện ảnh">Điện ảnh
+        <input type="checkbox" name="favourite" value="Du lịch">Du lịch <br/>
+
+        <input type="button" name="submit" value="Gửi thông tin">
+        <input type="reset" name="reset" value="Nhập lại">
+    </form>
+</body>
+</html>
