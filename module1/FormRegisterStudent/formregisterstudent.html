@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Form Register Student</title>
 </head>
+<style>
+   body {
+      background-color: #edd5a7;
+   }
+   p, input {
+     display: inline;
+     margin: 10px;
+   }
+   h1 {
+     background-color: #b1f6a1;
+     color: #0063fd;
+     text-align: left;
+     width: 100%;
+   }
+</style>
 <body>
-$END$
+    <form method="POST" action="">
+      <h1>Đăng ký học viên</h1>
+      <p>Họ và tên</p>
+      <input type="text" name="yourname" required><br>
+
+      <p>Ngày sinh</p>
+      <input type="text" name="birthday" required><br>
+
+      <p>Giới tính</p>
+      <input type="radio" name="gender">Nam
+      <input type="radio" name="gender">Nữ<br>
+
+      <p>Địa chỉ</p>
+      <textarea name="address" required></textarea><br>
+
+      <p>Lớp</p>
+      <select name="class" required>
+        <option value="C11">-Chọn lớp-</option>
+        <option value="C11">C11</option>
+        <option value="C12">C12</option>
+        <option value="C13">C13</option>
+      </select><br>
+
+      <p>Email</p>
+      <input type="email" name="email" required><br>
+
+      <p>Điện thoại</p>
+      <input type="number" name="phone" required><br>
+
+      <input type="button" name="submit" value="Đăng ký">
+      <input type="reset" name="reset" value="Nhập lại">
+    </form>
 </body>
 </html>
