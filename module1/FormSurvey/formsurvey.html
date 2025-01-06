@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Market Research Survey</title>
+</head>
+<style>
+    styled, styled.table th, styled.table td{
+        border:1px solid black;
+    }
+    styled.table th, styled.table td {
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Market Research Survey</h1>
+<p>Please take a few moments to complete this satisfaction survey.</p>
+<hr>
+<form method="post" action="">
+    <label style="font-weight: bold">What is your age range ?</label><br>
+    <select name="age" style="width: 70%">
+        <option value="18-24">18-24</option>
+        <option value="25-34">25-34</option>
+        <option value="35-50">35-50</option>
+        <option value="50+">50+</option>
+    </select><br>
+
+    <label style="font-weight: bold; margin-top: 15px;">What is your yearly income range ?</label><br>
+    <select name="age" style="width: 70%">
+        <option value="$0 - $25000">$0 - $25000</option>
+        <option value="$25001 - $50000">$25001 - $50000</option>
+        <option value="$50001 - $100000">$50001 - $100000</option>
+        <option value="$100000+">$100000+</option>
+    </select><br>
+
+    <label style="font-weight: bold; margin-top: 15px;">Gender Identity</label><br>
+    <input type="radio" name="gender" value="Male">Male<br>
+    <input type="radio" name="gender" value="Female">Female<br>
+    <input type="radio" name="gender" value="Nonbinary">Nonbinary<br>
+    <input type="radio" name="gender" value="Other">Other<br>
+    <input type="text" style="margin-left: 20px"><br>
+
+    <label style="font-weight: bold; margin-top: 15px;">Which of the following products have your purchased in the last 2 months. Please check all that apply.</label><br>
+    <input type="radio" name="purchased" value="Product 1">Product 1<br>
+    <input type="radio" name="purchased" value="Product 2">Product 2<br>
+    <input type="radio" name="purchased" value="Product 3">Product 3<br>
+
+    <label style="font-weight: bold; margin-top: 15px;">How often would you use our new product ?</label><br>
+    <input type="radio" name="purchased" value="Daily">Daily<br>
+    <input type="radio" name="purchased" value="Weekly">Weekly<br>
+    <input type="radio" name="purchased" value="Monthly">Monthly<br>
+
+    <label style="font-weight: bold; margin-top: 15px;">What would you pay for the new product ?</label><br>
+    $ <table style="display: inline">
+    <tr>
+        <th><input type="number" name="dollar"></th>
+        <th><input type="number" name="cents" style="width: fit-content"></th>
+    </tr>
+    <tr>
+        <td>Dollars</td>
+        <td>Cents</td>
+    </tr>
+</table><br>
+
+    <label style="font-weight: bold">What features would you like to see in the new product</label>
+    <textarea name="features" style="width: 70%"></textarea>
+
+    <p>Please rate your level of agreement with the following statements.</p>
+    <table class="styled" style="width: 70%">
+        <tr style="background-color: #797a7a">
+            <td></td>
+            <td>Strongly Disagree</td>
+            <td>Disagree</td>
+            <td>Agree</td>
+            <td>Strongly Agree</td>
+        </tr>
+        <tr>
+            <th>Our products are priced fairly</th>
+            <td><input type="radio" name="level of agreement"><br>1</td>
+            <td><input type="radio" name="level of agreement"><br>2</td>
+            <td><input type="radio" name="level of agreement"><br>3</td>
+            <td><input type="radio" name="level of agreement"><br>4</td>
+        </tr>
+        <tr style="background-color: #b3b5b5">
+            <th>Our products are high quality</th>
+            <td><input type="radio" name="level of agreement"><br>1</td>
+            <td><input type="radio" name="level of agreement"><br>2</td>
+            <td><input type="radio" name="level of agreement"><br>3</td>
+            <td><input type="radio" name="level of agreement"><br>4</td>
+        </tr>
+        <tr>
+            <th>You would recommand our product to a friend or coworker</th>
+            <td><input type="radio" name="level of agreement"><br>1</td>
+            <td><input type="radio" name="level of agreement"><br>2</td>
+            <td><input type="radio" name="level of agreement"><br>3</td>
+            <td><input type="radio" name="level of agreement"><br>4</td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit" style="margin-top: 15px">
+</form>
+</body>
+</html>
