@@ -12,7 +12,6 @@
         margin: 20px;
         background-color: white;
         padding: 20px;
-        place-content: center;
     }
     h1 {
         background-color: #f60404;
@@ -20,32 +19,35 @@
         width: 100%;
         text-align: center;
     }
-    p, input {
+    p, h4, input {
         display: inline;
         margin: 10px;
     }
-    p {
+    h4 {
         color: #0063fd;
         width: fit-content;
+    }
+    p {
+        color: #fdb200;
     }
 </style>
 <body>
     <form method="POST" action="">
         <h1>Sở thích của bạn</h1>
-        <p>Họ và tên</p>
+        <h4>Họ và tên</h4>
         <input type="text" name="yourname" required><br/>
 
-        <p>Email</p>
+        <h4>Email</h4>
         <input type="email" name="email" required><br/>
 
-        <p>Sở thích</p>
-        <input type="checkbox" name="hobby" value="Thể thao">Thể thao
-        <input type="checkbox" name="hobby" value="Âm nhạc">Âm nhạc
-        <input type="checkbox" name="hobby" value="Đọc sách">Đọc sách
-        <input type="checkbox" name="hobby" value="Lướt Web">Lướt Web
-        <input type="checkbox" name="hobby" value="Chơi game">Chơi game
-        <input type="checkbox" name="hobby" value="Điện ảnh">Điện ảnh
-        <input type="checkbox" name="hobby" value="Du lịch">Du lịch <br/>
+        <h4>Sở thích</h4>
+        <input type="checkbox" name="hobby" value="Thể thao"><p>Thể thao</p>
+        <input type="checkbox" name="hobby" value="Âm nhạc"><p>Âm nhạc</p>
+        <input type="checkbox" name="hobby" value="Đọc sách"><p>Đọc sách</p>
+        <input type="checkbox" name="hobby" value="Lướt Web"><p>Lướt Web</p>
+        <input type="checkbox" name="hobby" value="Chơi game"><p>Chơi game</p>
+        <input type="checkbox" name="hobby" value="Điện ảnh"><p>Điện ảnh</p>
+        <input type="checkbox" name="hobby" value="Du lịch"><p>Du lịch</p> <br/>
 
         <input type="button" name="Submit Form" value="Gửi thông tin">
         <input type="reset" name="Reset Form" value="Nhập lại">
