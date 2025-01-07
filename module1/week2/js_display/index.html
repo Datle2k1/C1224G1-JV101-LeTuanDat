@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="test" onclick="showMessage()" onmouseout="" onmouseover="">Start</h1>
+<button type="button" onclick="showMessage()">Click me</button>
+</body>
+</html>
+
+<script>
+     // function showMessage() {
+     //     document.getElementById("test").innerHTML = "Hello World!";
+     //     alert("Hello World!");
+     // }
+
+     // function showMessage() {
+     //     document.write("Hello World!");
+     // }
+
+     function showMessage(){
+         console.log('Xin chào!');
+     }
+
+     var h1 = document.getElementById("test");
+     h1.addEventListener("click", showMessage);
+</script>
