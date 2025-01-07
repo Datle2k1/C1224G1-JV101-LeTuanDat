@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="">
+        <input type="number" name="" id="nhap" style="margin-left: 20px;">
+        <input type="button" name="" id="ktra" value="check" onclick="kiem_tra()">
+        <p id="result" style="display: inline"></p>
+    </form>
+</body>
+</html>
+
+<script>
+    let ipt = document.getElementById("nhap");
+    let result = document.getElementById("result");
+
+    function kiem_tra() {
+        let year = parseInt(ipt.value);
+        if (year % 4 === 0) {
+            if (year % 100 === 0) {
+                if (year % 400 !== 0) {
+                    result.innerHTML = year + " không phải là năm nhuận";
+                } else {
+                    result.innerHTML = year + " là năm nhuận";
+                }
+            }
+            result.innerHTML = year + " là năm nhuận";
+        } else {
+            result.innerHTML = year + " không phải là năm nhuận";
+        }
+    }
+</script>
