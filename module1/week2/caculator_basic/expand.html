@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+    <link rel="stylesheet" href="F://Storage//Web//font//fontawesome-free-6.7.2//css//all.css">
+    <link rel="stylesheet" href="F://Storage//Web//font//fontawesome-free-6.7.2//css//solid.css">
+    <link rel="stylesheet" href="F://Storage//Web//font//fontawesome-free-6.7.2//css//all.min.css">
+</head>
+<style>
+    form {
+        border: 1px solid black;
+        width: fit-content;
+    }
+
+    th input {
+        width: 100%;
+        height: 50px;
+        text-align: right;
+        font-size: 24px;
+    }
+
+    button {
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        margin: 2px;
+    }
+
+    button.number {
+        background-color: white;
+    }
+</style>
+<body>
+<form method="post" action="">
+    <table>
+        <tr>
+            <th colspan="7"><input type="number" id="display" value="0"></th>
+        </tr>
+        <tr>
+            <td>
+                <button id="Rad">Rad</button>
+            </td>
+            <td>
+                <button id="#"></button>
+            </td>
+            <td>
+                <button id="x!">x!</button>
+            </td>
+            <td>
+                <button id="(">(</button>
+            </td>
+            <td>
+                <button id=")">)</button>
+            </td>
+            <td>
+                <button id="%">%</button>
+            </td>
+            <td>
+                <button id="AC" type="reset">AC</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="lnv">lnv</button>
+            </td>
+            <td>
+                <button id="sin">sin</button>
+            </td>
+            <td>
+                <button id="ln">ln</button>
+            </td>
+            <td>
+                <button id="7" class="number">7</button>
+            </td>
+            <td>
+                <button id="8" class="number">8</button>
+            </td>
+            <td>
+                <button id="9" class="number">9</button>
+            </td>
+            <td>
+                <button id="/"><i class="fa-divide"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="Pi">Pi</button>
+            </td>
+            <td>
+                <button id="cos">cos</button>
+            </td>
+            <td>
+                <button id="log">log</button>
+            </td>
+            <td>
+                <button id="4" class="number">4</button>
+            </td>
+            <td>
+                <button id="5" class="number">5</button>
+            </td>
+            <td>
+                <button id="6" class="number">6</button>
+            </td>
+            <td>
+                <button id="x">x</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="e">e</button>
+            </td>
+            <td>
+                <button id="tan">tan</button>
+            </td>
+            <td>
+                <button id="cawn">cawn</button>
+            </td>
+            <td>
+                <button id="1" class="number">1</button>
+            </td>
+            <td>
+                <button id="2" class="number">2</button>
+            </td>
+            <td>
+                <button id="3" class="number">3</button>
+            </td>
+            <td>
+                <button id="-">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="Ans">Ans</button>
+            </td>
+            <td>
+                <button id="EXP">EXP</button>
+            </td>
+            <td>
+                <button id="xy">x<sup>y</sup></button>
+            </td>
+            <td>
+                <button id="0" class="number">0</button>
+            </td>
+            <td>
+                <button id="." class="number" style="font-size: 24px">.</button>
+            </td>
+            <td>
+                <button id="=" style="background-color: blue">=</button>
+            </td>
+            <td>
+                <button id="+">+</button>
+            </td>
+        </tr>
+    </table>
+    <br>
+</form>
+<h3 id="result" style="color: blue"></h3>
+</body>
+</html>
+
+<script>
+    let btn_Rad = document.getElementById("Rad");
+    let btn = document.getElementById("#");
+    let btn_multiply = document.getElementById("x");
+    let btn_bracket_l = document.getElementById("(");
+    let btn_bracket_r = document.getElementById(")");
+    let btn_percent = document.getElementById("%");
+    let btn_AC = document.getElementById("AC");
+    let btn_lnv = document.getElementById("lnv");
+    let btn_sin = document.getElementById("sin");
+    let btn_ln = document.getElementById("ln");
+    let btn_7 = document.getElementById("7");
+    let btn_8 = document.getElementById("8");
+    let btn_9 = document.getElementById("9");
+    let btn_divide = document.getElementById("/");
+    let btn_Pi = document.getElementById("Pi");
+    let btn_cos = document.getElementById("cos");
+    let btn_log = document.getElementById("log");
+    let btn_4 = document.getElementById("4");
+    let btn_5 = document.getElementById("5");
+    let btn_6 = document.getElementById("6");
+    let btn_x = document.getElementById("x");
+    let btn_e = document.getElementById("e");
+    let btn_tan = document.getElementById("tan");
+    let btn_ = document.getElementById("cawn");
+    let btn_1 = document.getElementById("1");
+    let btn_2 = document.getElementById("2");
+    let btn_3 = document.getElementById("3");
+    let btn_subtract = document.getElementById("-");
+    let btn_Ans = document.getElementById("Ans");
+    let btn_EXP = document.getElementById("EXP");
+    let btn_xy = document.getElementById("xy");
+    let btn_0 = document.getElementById("0");
+    let btn_dot = document.getElementById(".");
+    let btn_equal = document.getElementById("=");
+    let btn_add = document.getElementById("+");
+
+    let result = document.getElementById("display");
+    let lastResult = 0
+
+    button1.addEventListener("click", function () {
+        caculate(addition);
+    });
+
+    button2.addEventListener("click", function () {
+        caculate(subtraction);
+    });
+
+    button3.addEventListener("click", function () {
+        caculate(multiplication);
+    });
+
+    button4.addEventListener("click", function () {
+        caculate(division);
+    });
+
+    function caculate(operation) {
+        let n1 = parseInt(number1.value);
+        let n2 = parseInt(number2.value);
+
+        if (isNaN(n1) || isNaN(n2)) {
+            result.innerHTML = "Vui lòng nhập số hợp lệ";
+        } else {
+            operation(n1, n2);
+        }
+    }
+
+    function addition(n1, n2) {
+        result.innerHTML = n1 + n2;
+    }
+
+    function subtraction(n1, n2) {
+        result.innerHTML = n1 - n2;
+    }
+
+    function multiplication(n1, n2) {
+        result.innerHTML = n1 * n2;
+    }
+
+    function division(n1, n2) {
+        if (n2 === 0) {
+            result.innerHTML = "Không thể chia cho 0";
+        } else {
+            result.innerHTML = n2 / n1;
+        }
+    }
+
+    function toRadian(degrees) {
+        return degrees * (Math.PI / 180);
+    }
+
+    function factorial(number) {
+        if (number < 1) {
+            result.innerHTML = "number invalid";
+        } else {
+            let p = 1;
+            for (let i = 0; i < number; i++) {
+                p *= i;
+            }
+            result.innerHTML = p
+        }
+    }
+
+    function get_sin(number) {
+        return Math.sin(number);
+    }
+
+    function GET_COS(number) {
+        return Math.cos(number);
+    }
+
+    function get_tan(number) {
+        return Math.tan(number);
+    }
+
+    function get_inv(number) {
+
+    }
+
+    function add_pi() {
+        let s = result.value
+        s += Math.PI
+        result.innerHTML = s
+    }
+
+    function add_e() {
+        let s = result.value
+        s += Math.E
+        result.innerHTML = s
+    }
+
+    function last_result() {
+        result.innerHTML = lastResult
+    }
+
+    function get_exponential(base, exponent) {
+        return base * Math.pow(10, exponent);
+    }
+
+    function get_power(base, exponent) {
+        return Math.pow(base, exponent);
+    }
+
+    function get_square(number) {
+        return Math.sqrt(number);
+    }
+
+    function add_dot() {
+
+    }
+
+    function equal() {
+
+    }
+
+
+</script>

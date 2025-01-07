@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    tr, th, td {
+        padding: 5px;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
+<body>
+<form method="post" action="">
+    <table>
+        <tr>
+            <th colspan="2"><input type="number" id="number_1"></th>
+            <th colspan="2"><input type="number" id="number_2"></th>
+        </tr>
+        <tr>
+            <th><input id="add" type="button" onclick="caculate()" value="Addition(+)"></th>
+            <th><input id="subtract" type="button" onclick="caculate()" value="Subtraction(-)"></th>
+            <th><input id="multiply" type="button" onclick="caculate()" value="Multiplication(x)"></th>
+            <th><input id="divide" type="button" onclick="caculate()" value="Division(/)"></th>
+        </tr>
+    </table>
+    <br>
+</form>
+<h3 id="result" style="color: blue"></h3>
+</body>
+</html>
+
+<script>
+    let result = document.getElementById("result");
+    let number1 = document.getElementById("number_1");
+    let number2 = document.getElementById("number_2");
+
+    let button1 = document.getElementById("add");
+    let button2 = document.getElementById("subtract");
+    let button3 = document.getElementById("multiply");
+    let button4 = document.getElementById("divide");
+
+    button1.addEventListener("click", function() {
+        caculate(addition);
+    });
+
+    button2.addEventListener("click", function() {
+        caculate(subtraction);
+    });
+
+    button3.addEventListener("click", function() {
+        caculate(multiplication);
+    });
+
+    button4.addEventListener("click", function() {
+        caculate(division);
+    });
+
+    function caculate(operation) {
+        let n1 = parseInt(number1.value);
+        let n2 = parseInt(number2.value);
+
+        if (isNaN(n1) || isNaN(n2)) {
+            result.innerHTML = "Vui lòng nhập số hợp lệ";
+        } else {
+            operation(n1, n2);
+        }
+    }
+
+    function addition(n1, n2) {
+        result.innerHTML = n1 + n2;
+    }
+
+    function subtraction(n1, n2) {
+        result.innerHTML = n1 - n2;
+    }
+
+    function multiplication(n1, n2) {
+        result.innerHTML = n1 * n2;
+    }
+
+    function division(n1, n2) {
+        if (n2 === 0) {
+            result.innerHTML = "Không thể chia cho 0";
+        } else {
+            result.innerHTML = n2 / n1;
+        }
+    }
+
+</script>
