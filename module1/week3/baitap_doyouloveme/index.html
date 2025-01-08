@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        justify-items: center;
+    }
+</style>
+<body>
+<h1 style="font-weight: bold">Do you love me</h1>
+<button id="yes">Yes</button>
+<button id="no">No</button>
+<script>
+    let yes = document.getElementById("yes");
+    let no = document.getElementById("no");
+
+    yes.addEventListener("click", function () {
+        alert("<3")
+    });
+
+    no.addEventListener("mouseover", function () {
+        let x = Math.random() * (100 - (-100)) + (-100);
+        let y = Math.random() * (100 - (-100)) + (-100);
+        no.style.position = "relative";
+        no.style.left = x + "px";
+        no.style.top = y + "px";
+    });
+</script>
+</body>
+</html>
