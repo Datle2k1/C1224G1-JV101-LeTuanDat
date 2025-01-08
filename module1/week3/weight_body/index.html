@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="init()">
+<script>
+    let weight = prompt("Your weight: ",0)
+    let height = prompt("Your height: ",0)
+
+    function init() {
+        let bmi = parseFloat(weight) / ( Math.pow(2,parseFloat(height)) )
+        if (bmi < 18.5) {
+            alert("Underweight")
+        } else if (bmi >= 18.5 && bmi < 25.0) {
+            alert("Normal")
+        } else if (bmi >= 25.0 && bmi < 30.0) {
+            alert("Overweight")
+        } else {
+            alert("Obese")
+        }
+    }
+</script>
+</body>
+</html>
