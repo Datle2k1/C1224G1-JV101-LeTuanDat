@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        justify-items: center;
+    }
+    form {
+        border: 1px solid black;
+    }
+</style>
+<body>
+<form action="">
+    <table>
+        <tr>
+            <td><input type="checkbox" id="good"></td>
+            <td>Good</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="fast"></td>
+            <td>Fast</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="cheap"></td>
+            <td>Cheap</td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    var good = document.getElementById("good");
+    var fast = document.getElementById("fast");
+    var cheap = document.getElementById("cheap");
+
+    good.addEventListener("click", function () {check(good)});
+    fast.addEventListener("click", function () {check(fast)});
+    cheap.addEventListener("click", function () {check(cheap)});
+
+    function check(ck) {
+        if (good.checked && fast.checked && cheap.checked) {
+            if (ck === good) {
+                off(fast, cheap);
+            } else if (ck === fast) {
+                off(cheap, good);
+            } else {
+                off(fast, good);
+            }
+        }
+    }
+
+    function off(ck1,ck2) {
+        let random = Math.floor(Math.random() * (2 -1 +1)) + 1;
+        if (random === 1) {
+            ck1.checked = false;
+        } else {
+            ck2.checked = false;
+        }
+    }
+</script>
+</body>
+</html>
