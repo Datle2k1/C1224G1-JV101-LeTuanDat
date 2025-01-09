@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * TNTT - thu nhập tính thuế
+    *    TNTT/tháng(triệu)   	     Thuế suất
+    *       Đến 5	                    5%
+    *    > 5 đến 10	                    10%
+    *    > 10 đến 18	                15%
+    *    > 18 đến 32	                20%
+    *    > 32 đến 52	                25%
+    *    > 52 đến 80	                30%
+    *        > 80	                    35%
+    * */
+
+    let tntt = parseFloat(prompt("Nhập thu nhập tính thuế : ", 0));
+    let money;
+
+    if (tntt <= 5) {
+        money = tntt * 0.05;
+    } else if (tntt > 5 && tntt <= 10) {
+        money = 5 * 0.05 + (tntt - 5) * 0.1;
+    } else if (tntt > 10 && tntt <= 18) {
+        money = 5 * 0.05 + 5 * 0.1 + (tntt - 10) * 0.15;
+    } else if (tntt > 18 && tntt <= 32) {
+        money = 5 * 0.05 + 5 * 0.1 + 8 * 0.15 + (tntt - 18) * 0.2;
+    } else if (tntt > 32 && tntt <= 52) {
+        money = 5 * 0.05 + 5 * 0.1 + 8 * 0.15 + 14 * 0.2 + (tntt - 32) * 0.25;
+    } else if (tntt > 52 && tntt <= 80) {
+        money = 5 * 0.05 + 5 * 0.1 + 8 * 0.15 + 14 * 0.2 + 20 * 0.25 + (tntt - 52) * 0.3;
+    } else {
+        money = 5 * 0.05 + 5 * 0.1 + 8 * 0.15 + 14 * 0.2 + 20 * 0.25 + 28 * 0.3 + (tntt - 80) * 0.35;
+    }
+
+    alert(`Thuế cần đóng với thu nhập tính thuế ${tntt} triệu là ${money} triệu`);
+</script>
+</body>
+</html>

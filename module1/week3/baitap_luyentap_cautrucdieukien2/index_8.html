@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let age = parseFloat(prompt("Nhập tuổi : ", 0));
+    if ( (age * 10) % 10 !== 0 || age >= 120 || age <= 0) {
+        alert(`Tuổi ${age} không hợp lệ`);
+    } else {
+        alert(`Tuổi ${age} hợp lệ`);
+    }
+</script>
+</body>
+</html>

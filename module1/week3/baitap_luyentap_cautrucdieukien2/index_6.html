@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * Phương trình bậc 1 : ax + b = c
+    * */
+
+    let a = parseFloat(prompt("Nhập a :", 0));
+    let b = parseFloat(prompt("Nhập b :", 0));
+    let c = parseFloat(prompt("Nhập c :", 0));
+
+    if (a === 0) {
+        if (b !== c) {
+            alert(`Phương trình ${a}x + ${b} = ${c} vô nghiệm`);
+        } else {
+            alert(`Phương trình ${a}x + ${b} = ${c} vô số nghiệm`);
+        }
+    } else {
+        let x = (c - b) / a;
+        alert(`Phương trình ${a}x + ${b} = ${c} có 1 nghiệm là ${x}`);
+    }
+</script>
+</body>
+</html>

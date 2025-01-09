@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseFloat(prompt("Nhập cạnh kề 1 tam giác vuông ; ", 0));
+    let b = parseFloat(prompt("Nhập cạnh kề 2 tam giác vuông ; ", 0));
+
+    if (a <= 0 || b <= 0) {
+        alert("Chiều dài hoặc chiều rộng không hợp lệ");
+    } else {
+        let area = ( a * b ) / 2;
+        alert(`Tam giác vuông: có 2 cạnh kề ${a}, ${b} có diện tích là ${area}`);
+    }
+</script>
+</body>
+</html>

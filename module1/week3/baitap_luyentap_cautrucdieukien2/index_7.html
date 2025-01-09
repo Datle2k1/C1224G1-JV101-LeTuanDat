@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Phương trình bậc 2 : ax2 + bx + c = 0
+    let a = parseFloat(prompt("Nhập a : ", 0));
+    let b = parseFloat(prompt("Nhập b : ", 0));
+    let c = parseFloat(prompt("Nhập c : ", 0));
+
+    if (a === 0) {
+        if (b === 0) {
+            if (c !== 0) {
+                alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 vô nghiệm`);
+            } else {
+                alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 vô số nghiệm`);
+            }
+        } else {
+            let x = -c / b;
+            alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 có nghiệm x là ${x}`);
+        }
+    } else {
+        let delta = Math.pow(b, 2) - 4 * a * c;
+        if (delta < 0) {
+            alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 vô nghiệm`);
+        } else if (delta > 0) {
+            let x1 = (-b - Math.sqrt(delta)) / (2 * a);
+            let x2 = (-b + Math.sqrt(delta)) / (2 * a);
+            alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 có 2 nghiệm x1,x2 lần lượt là ${x1}, ${x2}`);
+        } else {
+            let x = -b / (2 * a);
+            alert(`Phương trình ${a}*x2 + ${b}*x + ${c} = 0 có nghiệm kép x là ${x}`);
+        }
+    }
+</script>
+</body>
+</html>

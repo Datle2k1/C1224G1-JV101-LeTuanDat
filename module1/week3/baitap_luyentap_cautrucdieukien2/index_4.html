@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseFloat(prompt("Nhập chiều dài HCN ; ", 0));
+    let b = parseFloat(prompt("Nhập chiều rộng HCN ; ", 0));
+
+    if (a <= 0 || b <= 0) {
+        alert("Chiều dài hoặc chiều rộng không hợp lệ");
+    } else {
+        let area = a * b;
+        alert(`HCV: chiều dài ${a}, chiều rộng ${b} có diện tích là ${area}`);
+    }
+</script>
+</body>
+</html>
