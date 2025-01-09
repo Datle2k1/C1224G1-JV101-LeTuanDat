@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <script>
+         /*
+         * math, physic, chemistry
+         * Quiz * 1 - Midterm * 2 - Final * 3
+         * */
+
+         let mathQuiz_1 = parseFloat(prompt("Quiz 1 : Enter math score: ", 0));
+         let physicQuiz_1 = parseFloat(prompt("Quiz 1 : Enter physic score: ", 0));
+         let chemistryQuiz_1 = parseFloat(prompt("Quiz 1 : Enter chemistry score: ", 0));
+
+         let mathMidterm = parseFloat(prompt("Midterm : Enter math score: ", 0));
+         let physicMidterm = parseFloat(prompt("Midterm : Enter physic score: ", 0));
+         let chemistryMidterm = parseFloat(prompt("Midterm : Enter chemistry score: ", 0));
+
+         let mathQuiz_2 = parseFloat(prompt("Quiz 2 : Enter math score: ", 0));
+         let physicQuiz_2 = parseFloat(prompt("Quiz 2 : Enter physic score: ", 0));
+         let chemistryQuiz_2 = parseFloat(prompt("Quiz 2 : Enter chemistry score: ", 0));
+
+         let mathFinal = parseFloat(prompt("Final : Enter math score: ", 0));
+         let physicFinal = parseFloat(prompt("Final : Enter physic score: ", 0));
+         let chemistryFinal = parseFloat(prompt("Final : Enter chemistry score: ", 0));
+
+         let quiz = mathQuiz_1 + mathQuiz_2 + physicQuiz_1 + physicQuiz_2 + chemistryQuiz_1 + chemistryQuiz_2;
+         let midterm = mathMidterm + physicMidterm + chemistryMidterm;
+         let final = mathFinal + physicFinal + chemistryFinal;
+
+         let average = (quiz + midterm * 2 + final * 3) / 6;
+
+         if (average < 5) {
+             alert(`Điểm ${average} => Kém`);
+         } else if (average >= 5 && average < 7) {
+             alert(`Điểm ${average} => Trung bình`);
+         } else if (average >= 7 && average < 9) {
+             alert(`Điểm ${average} => Khá`);
+         } else {
+             alert(`Điểm ${average} => Giỏi`);
+         }
+     </script>
+</body>
+</html>

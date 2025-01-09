@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        * Nhân viên bán hàng:
+        * 0 -> < 2 tr nhận 3% tổng háo đơn
+        * 2tr -> < 5 tr nhận 5% tổng háo đơn
+        * > 5 tr nhận 7% tổng háo đơn
+        * */
+
+        let sales = parseFloat(prompt("Enter sales :", 0));
+        let tip = 0;
+
+        if (sales < 2000000) {
+            tip = sales * 0.003;
+        } else if (sales >= 2000000 && sales < 5000000) {
+            tip = 2000000 * 0.003 + (sales - 2000000) * 0.005;
+        } else {
+            tip = 2000000 * 0.003 + 5000000 * 0.005 + (sales - 5000000) * 0.007;
+        }
+
+        alert(`Money tip : ${tip} VND`)
+    </script>
+</body>
+</html>

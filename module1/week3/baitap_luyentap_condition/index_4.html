@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a = parseInt(prompt("Enter a:"));
+        let b = parseInt(prompt("Enter b:"));
+        let c = parseInt(prompt("Enter c:"));
+
+        if (a >= b) {
+            if (a >= c) {
+                alert(`Max is ${a}`);
+            } else {
+                alert(`Max is ${c}`);
+            }
+        } else if (b >= c) {
+            alert(`Max is ${b}`);
+        } else {
+            alert(`Max is ${c}`);
+        }
+    </script>
+</body>
+</html>
