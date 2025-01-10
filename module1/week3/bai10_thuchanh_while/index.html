@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number = parseInt(prompt("Enter number : ", 0));
+    if (isNaN(number)) {
+        alert("Number is NaN");
+    } else if (number === -1 || number < 0) {
+        alert("Input number is -1");
+    } else {
+        let sum = 0;
+        while (number > 0) {
+            sum += number;
+            number --;
+        }
+        alert(`Sum là ${sum}`);
+    }
+</script>
+</body>
+</html>
