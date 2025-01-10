@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        justify-items: center;
+    }
+</style>
+<body>
+<button type="button" id="control">Bắt đầu</button>
+<script>
+    var number;
+
+    let control = document.getElementById("control")
+
+    control.addEventListener("click", function () {
+        play()
+        control.innerHTML = "Chơi lại";
+    })
+
+    function play() {
+        let min = parseInt(prompt("Nhập chặn dưới : ", 0));
+        let max = parseInt(prompt("Nhập chặn trên : ", 0));
+        number = Math.floor(Math.random() * (max - min + 1)) + min;
+        check();
+    }
+
+    function check() {
+        let guess = parseInt(prompt("Nhập dự đoán của bạn : ", 0));
+        control.innerHTML = "Bắt đầu";
+        if (guess === number) {
+            alert("Chúc mừng bạn đã đoán chính xác");
+        } else if (guess > number) {
+            alert("Lớn quá, đoán lại đi !");
+            check();
+        } else {
+            alert("Bé thế, đoán lại đi !");
+            check();
+        }
+    }
+</script>
+</body>
+</html>

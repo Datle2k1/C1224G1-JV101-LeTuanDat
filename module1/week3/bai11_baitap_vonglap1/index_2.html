@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var temp = parseFloat(prompt("Nhập nhiệt độ : ", 0));
+    inputTemp(temp)
+
+    function inputTemp(param) {
+        if (param > 100) {
+            param = parseFloat(prompt("Hãy giảm nhiệt độ : ", param));
+            inputTemp(param);
+        } else if (param < 20) {
+            param = parseFloat(prompt("Hãy tăng nhiệt độ : ", param));
+            inputTemp(param);
+        } else {
+            alert(`Nhiệt độ : ${param}`);
+        }
+    }
+</script>
+</body>
+</html>
