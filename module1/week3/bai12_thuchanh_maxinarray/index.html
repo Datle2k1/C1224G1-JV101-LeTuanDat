@@ -8,14 +8,16 @@
 <script>
     var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     let max = arr[0];
+    let index = 0;
 
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] > max) {
             max = arr[i];
+            index = i;
         }
     }
 
-    alert(max);
+    alert(`Max is ${max} at position ${index}`);
 </script>
 </body>
 </html>
