@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let arr = [-3,5,1,3,2,10,3];
+
+  for (let i = 0; i < arr.length/2; i++) {
+      let temp = arr[arr.length - (i + 1)];
+      arr[arr.length - (i + 1)] = arr[i];
+      arr[i] = temp;
+  }
+
+  alert(arr);
+</script>
+</body>
+</html>
