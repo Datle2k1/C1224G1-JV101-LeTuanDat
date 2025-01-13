@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let result = "<pre>";
+    const height = 6;
+    const width = 7;
+    let count = 1;
+
+    for (let i = 1; i <= height; i++) {
+        for (let j = 1; j <= width; j++) {
+            switch (i) {
+                case 1:
+                    if (j === 1 || j === 4 || j === 7) {
+                        result += " ";
+                    } else {
+                        result += "*";
+                    }
+                    break;
+                case 2:
+                case 3:
+                    result += "*";
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    if (j <= count || j > width - count) {
+                        result += " ";
+                    } else {
+                        result += "*";
+                    }
+
+                    if (j === width) {
+                        count ++;
+                    }
+                    break;
+            }
+        }
+        result += "<br>";
+    }
+    result += "</pre>";
+
+    document.write(result);
+</script>
+</body>
+</html>

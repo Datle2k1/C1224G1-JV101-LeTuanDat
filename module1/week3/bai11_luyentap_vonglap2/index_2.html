@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number = parseInt(prompt("Enter number : ", 0));
+    let factorial = 1;
+
+    if (number <= 0) {
+        alert("Number không hợp lệ");
+    } else {
+        while (number > 0) {
+            factorial *= number
+            number--;
+        }
+    }
+
+    alert(`result is: ${factorial}`);
+</script>
+</body>
+</html>

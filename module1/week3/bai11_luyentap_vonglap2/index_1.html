@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let num1 = 0;
+    let num2 = 1;
+    let count = 100;
+    let result = "0, 1, ";
+
+    while (count > 0) {
+        let nextNum = num1 + num2;
+        result += `${nextNum}, `;
+        num1 = num2;
+        num2 = nextNum;
+        count--;
+    }
+
+    alert(result);
+</script>
+</body>
+</html>

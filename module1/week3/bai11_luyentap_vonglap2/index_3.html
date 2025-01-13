@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let edge = 5;
+
+    for (let i = 0; i < edge; i++) {
+        for (let j = 0; j < i + 1; j++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+
+    for (let i = 0; i < edge; i++) {
+        for (let j = 0; j < edge - i; j++) {
+            document.write("*");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+
+    var result = "<pre>";
+    for (let i = 1; i <= edge; i++) {
+        for (let j = 1; j <= edge; j++) {
+            if (j <= edge - i) {
+                result += " ";
+            } else {
+                result += "*";
+            }
+        }
+        result += "<br>";
+    }
+    result += "</pre>"
+    document.write(result);
+    document.write("<br>");
+
+    result = "<pre>";
+    for (let i = 1; i <= edge; i++) {
+        for (let j = 1; j <= edge; j++) {
+            if (j < i) {
+                result += " ";
+            } else {
+                result += "*";
+            }
+        }
+        result += "<br>";
+    }
+    result += "</pre>"
+    document.write(result);
+    document.write("<br>");
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const money = parseInt(prompt("Enter init amount", 0));
+    const month = parseInt(prompt("Enter month", 0));
+    const rate = parseFloat(prompt("Enter interest rate : ", 0));
+    let finalMoney = money;
+    let count = 1
+
+    while (count <= month) {
+        finalMoney += (finalMoney + finalMoney * rate);
+        count ++;
+    }
+
+    alert("Final money : " + finalMoney);
+</script>
+</body>
+</html>
