@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="justify-items: center">
+<form action="">
+    <h2>Caro Game Simple</h2>
+    <div id="container"></div>
+    <input type="button" onclick="changeValue()" value="Change Value">
+</form>
+
+<script>
+    let container = document.getElementById("container");
+    let board = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+    drawBoard();
+
+    function drawBoard() {
+        let result = ""
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                result += board[i][j] + "&nbsp;&nbsp;";
+            }
+            result += "<br>";
+        }
+
+        container.innerHTML = result;
+    }
+
+    function changeValue() {
+        let x = parseInt(prompt("Enter x: ", 0));
+        let y = parseInt(prompt("Enter y: ", 0));
+
+        if (x < 0 || y < 0 || x > 4 || y > 4) {
+            alert("Please enter x and y");
+            changeValue();
+        }
+
+        board[x][y] = "x";
+        drawBoard();
+    }
+</script>
+</body>
+</html>
