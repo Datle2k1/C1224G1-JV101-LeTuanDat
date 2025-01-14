@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [2,3,12,2,23,3,123,1,213,21];
+    let max = arr[0]
+    let index = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+            index = i;
+        }
+    }
+
+    alert(`Phần tử lớn nhất là ${max} tại vị trí ${index}`);
+</script>
+</body>
+</html>

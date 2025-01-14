@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const a = [];
+    for (let i = 0; i < 4; i++) {
+        a[i] = parseInt(prompt(`Enter number ${i}:`, 0));
+    }
+    alert(a);
+
+    const b = [];
+    for (let i = 0; i < 4; i++) {
+        b[i] = parseInt(prompt(`Enter number ${i}:`, 0));
+    }
+    alert(b);
+
+    let c = new Array(8);
+    for (let i = 0; i < c.length; i++) {
+        if ( i < 4) {
+            c[i] = a[i];
+        } else if (i < 8) {
+            c[i] = b[i - 4];
+        }
+    }
+
+    alert(c);
+</script>
+</body>
+</html>

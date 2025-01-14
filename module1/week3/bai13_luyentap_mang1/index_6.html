@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const arr = [];
+    for (let i = 0; i < 10; i++) {
+        arr[i] = parseInt(prompt(`Enter number ${i}:`, 0));
+    }
+    const numV = parseInt(prompt("Enter number V : ", 0));
+
+    if (arr.indexOf(numV)) {
+        alert("V is in array");
+    } else {
+        alert("V is not in array");
+    }
+</script>
+</body>
+</html>

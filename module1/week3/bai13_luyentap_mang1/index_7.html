@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const arr = [];
+    for (let i = 0; i < 10; i++) {
+        arr[i] = parseInt(prompt(`Enter number ${i}:`, 0));
+    }
+    alert(arr);
+    const numV = parseInt(prompt("Enter number V : ", 0));
+
+    if (arr.indexOf(numV)) {
+        for (let i = arr.indexOf(numV); i < arr.length; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr.pop()
+    }
+    alert(arr);
+</script>
+</body>
+</html>
