@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="justify-items: center">
+<form>
+    <input type="text" id="input">
+    <input type="button" value="Submit" id="submit">
+    <p style="padding: 10px" id="result"></p>
+</form>
+
+<script>
+    const en = ["banana", "apple", "grapefruit"];
+    const vi = ["quả chuối", "quả táo", "quả bưởi"];
+
+    let input = document.getElementById("input");
+    let button = document.getElementById("submit");
+    let result = document.getElementById("result");
+
+    button.addEventListener("click", function () {
+        findWord()
+    })
+
+    function findWord() {
+        if (en.includes(input.value)) {
+            result.innerHTML = `${input.value} - ${vi[en.indexOf(input.value)]}`;
+        } else {
+            result.innerHTML = "Không tìm thấy";
+        }
+    }
+
+</script>
+</body>
+</html>
