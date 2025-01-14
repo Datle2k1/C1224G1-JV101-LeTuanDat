@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = prompt("Enter string : ", "");
+
+    let arr = str.split("").map(function(item) {
+        item = item === item.toLowerCase() ? item.toUpperCase() : item.toLowerCase();
+        return item;
+    })
+
+    alert(arr.join(""));
+</script>
+</body>
+</html>

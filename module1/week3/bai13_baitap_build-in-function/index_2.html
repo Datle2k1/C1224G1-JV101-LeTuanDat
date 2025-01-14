@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number = prompt("Enter anumber :", 0)
+    let arrNum = number.split("");
+
+    for (let i = 0; i < arrNum.length ; i++) {
+        if (arrNum[i] % 2 === 0 && arrNum[i + 1] % 2 === 0) {
+            let arr2 = arrNum.splice(i+1);
+            let arr1 = arrNum.splice(0,i + 1);
+            arr2.unshift("-");
+            arrNum = arr1.concat(arr2);
+        }
+    }
+
+    alert(arrNum.join(""));
+</script>
+</body>
+</html>
