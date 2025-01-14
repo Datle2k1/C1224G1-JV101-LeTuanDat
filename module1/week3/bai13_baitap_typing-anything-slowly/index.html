@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="init()" style="justify-items: center;">
+<h1 style="font-weight: bold">Type anything slowly</h1>
+<textarea id="display" rows="10" cols="50"></textarea>
+<script>
+    let str = "TÔI LÀ THẰNG NGỐC";
+    let display = document.getElementById("display");
+    let arrStr = str.split("");
+    let temp = "";
+
+    function typedSlowly() {
+        let current = display.value;
+        for (let i = 1; i <= current.length; i++) {
+            temp = temp + arrStr[i - 1];
+            if (i > arrStr.length) {
+                display.value = "";
+                temp = "";
+            }
+        }
+        display.value = temp;
+        temp = "";
+        setTimeout("typedSlowly()", 1);
+    }
+
+    function init() {
+        document.addEventListener("keyup", function () {
+            typedSlowly()
+        });
+    }
+</script>
+</body>
+</html>
