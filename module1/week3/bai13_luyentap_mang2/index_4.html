@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = "Hello World hi hello everyone ";
+    let count = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === " " && i !== 0 && i !== str.length - 1) {
+            count++;
+        }
+    }
+
+    alert(`Số từ có trong chuỗi '${str}' là ${count + 1}`);
+</script>
+</body>
+</html>

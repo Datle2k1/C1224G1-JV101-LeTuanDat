@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arrChar = [];
+    for (let i = 0; i < 10; i++) {
+        arrChar[i] = prompt("Enter char : ", '');
+    }
+
+    for (let i = 0; i < arrChar.length; i++) {
+        if (arrChar[i] === '-') {
+            arrChar[i] = '_';
+        }
+    }
+
+    alert(arrChar);
+</script>
+</body>
+</html>
