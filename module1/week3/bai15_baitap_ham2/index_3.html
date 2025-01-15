@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getFactorial(number) {
+        let factorial = 1;
+        while (number >= 1) {
+            factorial *= number;
+            number--;
+        }
+        return factorial;
+    }
+
+    const inputNum = parseInt(prompt("Enter a number: ", 0));
+    if (inputNum < 1 || isNaN(inputNum)) {
+        alert("Input invalid");
+    } else {
+        let result = getFactorial(inputNum);
+        alert(result);
+    }
+</script>
+</body>
+</html>

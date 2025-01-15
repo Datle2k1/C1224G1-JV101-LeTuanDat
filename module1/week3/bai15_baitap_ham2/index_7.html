@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function replaceNumber() {
+        let temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+
+    let num1 = prompt("Enter number", 0);
+    let num2 = prompt("Enter number", 1);
+    alert(`Number 1: ${num1}, Number 2: ${num2}`);
+    replaceNumber();
+    alert(`Number 1: ${num1}, Number 2: ${num2}`);
+</script>
+</body>
+</html>

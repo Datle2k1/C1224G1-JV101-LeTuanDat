@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function handle(number) {
+        if ((number * 10) % 10 === 0) {
+            return number > 0;
+        } else {
+            return false;
+        }
+    }
+
+    const  inputNumber = prompt("Enter a number", 0);
+    const result = handle(inputNumber);
+    alert(result);
+</script>
+</body>
+</html>

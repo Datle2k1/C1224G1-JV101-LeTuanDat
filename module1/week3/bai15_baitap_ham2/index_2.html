@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getArea(radius) {
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    function getCircuit(radius) {
+        return 2 * Math.PI * radius;
+    }
+
+    const inputRadius = parseFloat(prompt("Enter a number: ", 0));
+    if (inputRadius <= 0 || isNaN(inputRadius)) {
+        alert("input invalid");
+    } else {
+        const area = getArea(inputRadius);
+        const circuit = getCircuit(inputRadius);
+        alert(`area : ${area}, circuit : ${circuit}`);
+    }
+</script>
+</body>
+</html>
