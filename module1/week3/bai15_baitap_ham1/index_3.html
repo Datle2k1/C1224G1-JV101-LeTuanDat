@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button">Click</button>
+<script>
+    let button = document.querySelector('button');
+    button.addEventListener('click', function () {
+        let result = input(5,5);
+        document.write(result);
+    })
+
+    function input(num1, num2) {
+        if (num1 > num2) {
+            return "Tham số 1 lớn hơn tham số 2";
+        } else {
+            return num1 + num2;
+        }
+    }
+</script>
+</body>
+</html>
