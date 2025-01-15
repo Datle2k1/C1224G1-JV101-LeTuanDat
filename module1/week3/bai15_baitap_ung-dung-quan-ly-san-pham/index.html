@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    td {
+        border: 1px solid black;
+        width: 300px;
+        text-align: center;
+    }
+
+    td:nth-child(even) {
+        background-color: #5f6161;
+    }
+
+    input[type=button] {
+        background-color: #5f6161;
+        color: white;
+    }
+</style>
+<body style="justify-items: center" onload="init()">
+<h1>Display All Product</h1>
+<form style="justify-items: center">
+    <div id="container"></div>
+    <label>Name <input type="text" name="name product" id="name_product" style="margin-top: 5px"></label>
+    <input type="button" value="add product" onclick="addProduct()">
+</form>
+<script>
+    let products = ["Sản phầm 1", "Sản phầm 2", "Sản phầm 3", "Sản phầm 4"];
+    let inputProduct = document.getElementById("name_product");
+    let container = document.getElementById("container");
+
+    function drawBoardManage() {
+        let result = "<table><tr>"
+            + "<th style='float: left'>Name Product</th>"
+            + "<th style='float: right'>" + products.length + " products </th></tr>";
+        for (let i = 0; i < products.length; i++) {
+            result += "<tr>"
+                + "<td colspan='2'>" + products[i]
+                + "<input type='button' value='edit' onclick='editProduct(" + i + ")' style='float: right'>"
+                + "<input type='button' value='delete' onclick='deleteProduct(" + i + ")' style='float: right'>"
+                + "</td>"
+                + "</tr>";
+        }
+        result += "</table>";
+        container.innerHTML = result;
+    }
+
+    function editProduct(index) {
+        products[index] = prompt("Enter name product you want to edit : ", "");
+        drawBoardManage()
+    }
+
+    function deleteProduct(index) {
+        if (confirm(`Are you sure you want to delete ${products[index]}?`)) {
+            for (let i = index; i < products.length; i++) {
+                products[i] = products[i + 1];
+            }
+            products.pop();
+            drawBoardManage()
+        }
+    }
+
+    function addProduct() {
+        if (isNaN(inputProduct.value)) {
+            products.push(inputProduct.value);
+            inputProduct.value = "";
+            drawBoardManage()
+        }
+    }
+
+    function init() {
+        drawBoardManage(products)
+    }
+</script>
+</body>
+</html>
