@@ -18,8 +18,13 @@
 <script>
     let board = [];
     let turn = true;
-    let count = 0;
+    let countBLock = 0;
+    let isExit = false;
     let range = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let rows = [];
+    let cols = [];
+    let isFinished = false
+    let color = "#ffffff";
     let container = document.getElementById('container');
 
     function drawBoard(locate1, locate2) {
@@ -35,7 +40,15 @@
         for (let i = 0; i < board.length; i++) {
             result += "<tr>";
             for (let j = 0; j < board[i].length; j++) {
-                result += "<td onclick='drawBoard(" + i + "," + j + ")'>"
+                if (isFinished) {
+                    if (rows.length >= 1) {
+                        defineColor(i, j);
+                    } else {
+                        color = "#ffffff";
+                    }
+                }
+                result += "<td onclick='drawBoard(" + i + "," + j + ")'" +
+                    " style='background-color: " + color + "'>"
                 switch (board[i][j]) {
                     case 1:
                         result += "x";
@@ -53,165 +66,230 @@
         result += "</table>";
         container.innerHTML = result;
 
-        someBodyWin()
-    }
-
-    function someBodyWin() {
-        for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board[i].length; j++) {
-                if (board[i][j] === 1) {
-                    count++;
-                    checkAround(i, j, 1)
-                } else if (board[i][j] === -1) {
-                    count++;
-                    checkAround(i, j, -1)
-                }
-            }
+        if (locate1 !== -2 && locate2 !== -2) {
+            rows.push(locate1);
+            cols.push(locate2);
+            checkAround(locate1, locate2, board[locate1][locate2]);
         }
     }
 
     function checkAround(locate1, locate2, player) {
         checkVertical(locate1, locate2, player);
         checkHorizontal(locate1, locate2, player);
-        checkCross(locate1, locate2, player);
+        checkCross1(locate1, locate2, player);
+        checkCross2(locate1, locate2, player);
     }
 
     function checkVertical(locate1, locate2, player) {
-        while(true) {
-            if (range.includes(locate1 + count)) {
-                if (board[locate1 + count][locate2] === player) {
-                    count++;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
         while (true) {
-            if (range.includes(locate1 - count)) {
-                if (board[locate1 - count][locate2] === player) {
-                    count++;
-                } else {
-                    break;
+            if (range.includes(locate1 + rows.length)) {
+                switch (board[locate1 + rows.length][locate2]) {
+                    case player:
+                        rows.push(locate1 + rows.length);
+                        cols.push(locate2);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
                 }
+                if (countBLock === 1 || isExit) break;
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            isExit = false;
+            if (range.includes(locate1 - rows.length)) {
+                switch (board[locate1 - rows.length][locate2]) {
+                    case player:
+                        rows.push(locate1 - rows.length);
+                        cols.push(locate2);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
+                }
+                if (countBLock === 2 || isExit) break;
             } else {
                 break;
             }
         }
 
-        if (count >= 5) {
-            checkCount(player);
-        } else {
-            count = 0;
-        }
+        checkAnyoneWin(player)
     }
 
     function checkHorizontal(locate1, locate2, player) {
-        while(true) {
-            if (range.includes(locate2 + count)) {
-                if (board[locate1][locate2 + count] === player) {
-                    count++;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
         while (true) {
-            if (range.includes(locate2 - count)) {
-                if (board[locate1][locate2 - count] === player) {
-                    count++;
-                } else {
-                    break;
+            if (range.includes(locate2 - rows.length)) {
+                switch (board[locate1][locate2 - rows.length]) {
+                    case player:
+                        rows.push(locate1);
+                        cols.push(locate2 - cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
                 }
+                if (countBLock === 1 || isExit) break;
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            isExit = false;
+            if (range.includes(locate2 + cols.length)) {
+                switch (board[locate1][locate2 + cols.length]) {
+                    case player:
+                        rows.push(locate1);
+                        cols.push(locate2 + cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
+                }
+                if (countBLock === 2 || isExit) break;
             } else {
                 break;
             }
         }
 
-        if (count >= 5) {
-            checkCount(player);
-        } else {
-            count = 0;
-        }
+        checkAnyoneWin(player)
     }
 
-    function checkCross(locate1, locate2, player) {
-        while(true) {
-            if (range.includes(locate2 + count) && range.includes(locate1 + count)) {
-                if (board[locate1 + count][locate2 + count] === player) {
-                    count++;
-                } else {
-                    break;
+    function checkCross1(locate1, locate2, player) {
+        while (true) {
+            if (range.includes(locate1 - rows.length) && range.includes(locate2 + cols.length)) {
+                switch (board[locate1 - rows.length][locate2 + cols.length]) {
+                    case player:
+                        rows.push(locate1 - rows.length);
+                        cols.push(locate2 + cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
                 }
+                if (countBLock === 1 || isExit) break;
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            isExit = false;
+            if (range.includes(locate1 + rows.length) && range.includes(locate2 - cols.length)) {
+                switch (board[locate1 + rows.length][locate2 - cols.length]) {
+                    case player:
+                        rows.push(locate1 + rows.length);
+                        cols.push(locate2 - cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
+                }
+                if (countBLock === 2 || isExit) break;
             } else {
                 break;
             }
         }
 
-        while(true) {
-            if (range.includes(locate2 - count) && range.includes(locate1 - count)) {
-                if (board[locate1 - count][locate2 - count] === player) {
-                    count++;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        while(true) {
-            if (range.includes(locate2 - count) && range.includes(locate1 + count)) {
-                if (board[locate1 + count][locate2 - count] === player) {
-                    count++;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        while(true) {
-            if (range.includes(locate2 + count) && range.includes(locate1 - count)) {
-                if (board[locate1 - count][locate2 + count] === player) {
-                    count++;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        if (count >= 5) {
-            checkCount(player);
-        } else {
-            count = 0;
-        }
+        checkAnyoneWin(player)
     }
 
-    function checkCount(player) {
-        if (player === -1) {
-            alert("Player (0) WIN");
-        } else {
-            alert("Player (x) WIN");
+    function checkCross2(locate1, locate2, player) {
+        while (true) {
+            if (range.includes(locate1 + rows.length) && range.includes(locate2 + cols.length)) {
+                switch (board[locate1 + rows.length][locate2 + cols.length]) {
+                    case player:
+                        rows.push(locate1 + rows.length);
+                        cols.push(locate2 + cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
+                }
+                if (countBLock === 1 || isExit) break;
+            } else {
+                break;
+            }
         }
-        count = 0;
-        init()
+        while (true) {
+            isExit = false;
+            if (range.includes(locate1 - rows.length) && range.includes(locate2 - cols.length)) {
+                switch (board[locate1 - rows.length][locate2 - cols.length]) {
+                    case player:
+                        rows.push(locate1 - rows.length);
+                        cols.push(locate2 - cols.length);
+                        break;
+                    case -player:
+                        countBLock++;
+                        break;
+                    default:
+                        isExit = true;
+                }
+                if (countBLock === 2 || isExit) break;
+            } else {
+                break;
+            }
+        }
+
+        checkAnyoneWin(player)
+    }
+
+    function checkAnyoneWin(player) {
+        if ((rows.length >= 5 && countBLock > 0) || (rows.length >= 3 && countBLock === 0)) {
+            isFinished = true;
+            drawBoard(-2, -2);
+            setTimeout(() => {
+                alert(`Player ${player === -1 ? "o" : "x"} WIN`);
+                reset()
+                init()
+            }, 100);
+        }
+        reset()
+    }
+
+    function defineColor(i, j) {
+        let count = rows.length;
+        while (count > 0) {
+            if (rows[count - 1] === i && cols[count - 1] === j) {
+                rows.splice(count - 1, 1);
+                cols.splice(count - 1, 1);
+                color = "#73FF00FF";
+                break;
+            } else {
+                color = "#ffffff";
+            }
+            count--;
+        }
     }
 
     function yourTurn() {
         turn = !turn;
     }
 
+    function reset() {
+        countBLock = 0;
+        isExit = false;
+        rows = [];
+        cols = [];
+    }
+
     function init() {
         board = Array(9).fill().map(() => Array(9).fill(0));
+        isFinished = false;
         drawBoard(-2, -2)
     }
 </script>
