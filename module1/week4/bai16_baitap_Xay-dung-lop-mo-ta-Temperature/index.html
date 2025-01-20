@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let Temperature = function (temp) {
+        this.temp = temp;
+        this.setTemp = function (newTemp) {
+            this.temp = newTemp;
+        }
+        this.convertToFahrenheit = function () {
+            return this.temp * (9/5) + 32;
+        }
+        this.convertToKelvin = function () {
+            return this.temp + 273.15;
+        }
+    }
+
+    let temperature = new Temperature(38);
+    temperature.setTemp(25);
+    let result = `Fahrenheit : ${temperature.convertToFahrenheit()}, Kelvin : ${temperature.convertToKelvin()}`;
+    document.write(result);
+</script>
+</body>
+</html>
