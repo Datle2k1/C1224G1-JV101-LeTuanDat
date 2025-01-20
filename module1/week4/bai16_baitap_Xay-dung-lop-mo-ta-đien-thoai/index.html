@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="justify-items: center;">
+<script>
+    let Mobile = function (name, battery, mailIsWriting, mailReceived, mailSent, status) {
+        this.name = name
+        this.battery = battery;
+        this.mailIsWritting = mailIsWriting;
+        this.mailReceived = mailReceived;
+        this.mailSent = mailSent;
+        this.status = status;
+
+        this.notification = function (content) {
+            alert(`${this.name} - ${content}`);
+        }
+        this.handleBattery = function () {
+            this.battery--;
+            if (this.battery <= 0) {
+                this.notification("Device is turn off");
+                this.controlMobile();
+            }
+        }
+
+        this.isOn = function () {
+            this.handleBattery();
+            return this.status
+        }
+        this.controlMobile = function () {
+            this.handleBattery();
+            this.status = !this.status;
+            this.notification(`${this.status ? "Device is turn on" : "Device is turn off"}`);
+        }
+        this.chargeBattery = function (charge) {
+            for (let i = 0; i < charge; i++) {
+                if (this.battery > 100) {
+                    alert("The phone is fully charged");
+                    break;
+                }
+                this.battery++;
+            }
+            alert("Battery: " + this.battery);
+        }
+        this.writeMessage = function (content) {
+            if (this.isOn()) {
+                this.handleBattery();
+                this.mailIsWritting = content;
+                this.notification(`Message is writting : ${content}`);
+            }
+        }
+        this.receiveMail = function (content) {
+            if (this.isOn()) {
+                this.handleBattery();
+                this.mailReceived.push(content);
+                this.notification(`Message received: ${content}`);
+            }
+        }
+        this.sendMail = function () {
+            if (this.isOn()) {
+                this.handleBattery();
+                return this.mailIsWritting;
+            }
+            return "";
+        }
+        this.showMailReceived = function () {
+            if (this.isOn()) {
+                this.handleBattery();
+                this.notification(`Mail Received: ${this.mailReceived.length > 0 ? this.mailReceived : "not mail received"}`)
+            }
+        }
+        this.showMailSent = function () {
+            if (this.isOn()) {
+                this.handleBattery();
+                this.notification(`Mail Sent: ${this.mailSent.length > 0 ? this.mailSent : "not mail sent"}`)
+            }
+        }
+    }
+
+    let android = new Mobile("android",10, "", [], [],false);
+    let iphone = new Mobile("iphone",10, "", [], [],false);
+
+    android.controlMobile();
+    iphone.controlMobile();
+
+    android.writeMessage("Helllo IPHONEEE");
+    iphone.receiveMail(android.sendMail());
+
+    iphone.showMailReceived()
+</script>
+</body>
+</html>
