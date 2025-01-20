@@ -138,39 +138,42 @@ function addNumber(number) {
 }
 
 function getResult() {
-    console.log(containOperator)
-    let ipt = display.innerHTML;
-    let ar = ipt.split("");
-    let operator = ""
-    let num1, num2;
+    // let ipt = display.innerHTML;
+    // let ar = ipt.split("");
+    // let operator = ""
+    // let num1, num2;
+    // if (containOperator) {
+    //     for (let i = 0; i < ar.length; i++) {
+    //         if (isNaN(parseInt(ar[i]))) {
+    //             operator = ar[i];
+    //             num1 = parseInt(ipt.substr(0, i));
+    //             num2 = parseInt(ipt.substr(i + 1));
+    //             break;
+    //         }
+    //     }
+    // }
+    // switch (operator) {
+    //     case "+":
+    //         display.innerHTML = `${num1 + num2}`;
+    //         break;
+    //     case "-":
+    //         display.innerHTML = `${num1 - num2}`;
+    //         break;
+    //     case "x":
+    //         display.innerHTML = `${num1 * num2}`;
+    //         break;
+    //     case "/":
+    //         if (num2 !== 0) {
+    //             display.innerHTML = `${num1 / num2}`;
+    //         } else  {
+    //             display.innerHTML = ""
+    //         }
+    //         break;
+    // }
     if (containOperator) {
-        for (let i = 0; i < ar.length; i++) {
-            if (isNaN(parseInt(ar[i]))) {
-                operator = ar[i];
-                num1 = parseInt(ipt.substr(0, i));
-                num2 = parseInt(ipt.substr(i + 1));
-                break;
-            }
-        }
+        display.innerHTML = eval(display.innerText);
+        containOperator = false;
     }
-    switch (operator) {
-        case "+":
-            display.innerHTML = `${num1 + num2}`;
-            break;
-        case "-":
-            display.innerHTML = `${num1 - num2}`;
-            break;
-        case "x":
-            display.innerHTML = `${num1 * num2}`;
-            break;
-        case "/":
-            if (num2 !== 0) {
-                display.innerHTML = `${num1 / num2}`;
-            } else  {
-                display.innerHTML = ""
-            }
-            break;
-    }
-    containOperator = false
-    lastResult = display.innerHTML;
+
+    lastResult = display.innerText;
 }

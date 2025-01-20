@@ -8,6 +8,7 @@
     table {
         border: 1px solid black;
         padding: 10px;
+        width: 360px;
     }
 
     td {
@@ -54,26 +55,27 @@
     }
 
     function editProduct(index) {
-        products[index] = prompt("Enter name product you want to edit : ", "");
-        drawBoardManage()
+        let newName = prompt("Enter name product you want to edit : ", "");
+        if (isNaN(newName)) {
+            products[index] = newName;
+            drawBoardManage()
+        }
     }
 
     function deleteProduct(index) {
         if (confirm(`Are you sure you want to delete ${products[index]}?`)) {
-            for (let i = index; i < products.length; i++) {
-                products[i] = products[i + 1];
-            }
-            products.pop();
+            products.splice(index, 1);
             drawBoardManage()
         }
     }
 
     function addProduct() {
+        console.log(isNaN(inputProduct.value));
         if (isNaN(inputProduct.value)) {
             products.push(inputProduct.value);
-            inputProduct.value = "";
             drawBoardManage()
         }
+        inputProduct.value = "";
     }
 
     function init() {

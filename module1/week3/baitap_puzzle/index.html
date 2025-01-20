@@ -31,12 +31,13 @@
     const xMin = 1;
     const yMin = 1;
     const yMax = 4;
-    var x1, y1, x2, y2, x3, y3, x4, y4;
+    let x1, y1, x2, y2, x3, y3, x4, y4;
 
     let img1 = document.getElementById("img1")
     let img2 = document.getElementById("img2")
     let img3 = document.getElementById("img3")
     let img4 = document.getElementById("img4")
+    let table = document.getElementById("table")
 
     img1.addEventListener("click", function () {
         setImage(x1,y1,img1)
@@ -51,35 +52,36 @@
         setImage(x4,y4,img4)
     })
 
-    let table = document.getElementById("table")
-
-    function randomXY(x, y) {
+    function randomXY(img, x, y) {
         x = Math.floor(Math.random() * (xMax - xMin + 1)) + xMin;
         y = Math.floor(Math.random() * (yMax - yMin + 1)) + yMin;
-        check()
+        if (img === img1) {
+            x1 = x; y1 = y;
+        } else if (img === img2) {
+            x2 = x; y2 = y;
+        } else if (img === img3) {
+            x3 = x; y3 = y;
+        } else {
+            x4 = x; y4 = y;
+        }
         return x + "_" + y
     }
 
     function check() {
-        let bgColor = "#ffffff"
-        if (x1 === x2 === x3 === x4 === 1
-            && y1 === 1 && y2 === 2 && y3 === 3 && y4 === 4) {
-            bgColor = "#02ff00"
+        if (x1 === x2 && x2 === x3 && x3 === x4
+        && y1 < y2 && y2 < y3 && y3 < y4) {
+            table.style.backgroundColor = "#00ff00"
+            console.log("matched")
+        } else {
+            table.style.backgroundColor = "#ffffff"
+            console.log("not matche")
         }
-        if (x1 === x2 === x3 === x4 === 2
-            && y1 === 1 && y2 === 2 && y3 === 3 && y4 === 4) {
-            bgColor = "#02ff00"
-        }
-        if (x1 === x2 === x3 === x4 === 3
-            && y1 === 1 && y2 === 2 && y3 === 3 && y4 === 4) {
-            bgColor = "#02ff00"
-        }
-        table.style.backgroundColor = bgColor
     }
 
     function setImage(x,y,img) {
-        let index = randomXY(x, y)
-        img.setAttribute("src", `image/image_${index}.jpg`);
+        let index = randomXY(img, x, y)
+        img.setAttribute("src", `assets/image/image_${index}.jpg`);
+        check()
     }
 
     function init() {

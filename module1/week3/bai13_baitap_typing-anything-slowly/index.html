@@ -24,11 +24,11 @@
         }
         display.value = temp;
         temp = "";
-        setTimeout("typedSlowly()", 1);
+        // setTimeout("typedSlowly()", 1);
     }
 
     function init() {
-        document.addEventListener("keyup", function () {
+        window.addEventListener("keyup", function () {
             typedSlowly()
         });
     }

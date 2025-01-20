@@ -9,148 +9,155 @@
     <link rel="stylesheet" href="F://Storage//Web//font//fontawesome-free-6.7.2//css//all.min.css">
 </head>
 <style>
-    form {
-        border: 1px solid black;
-        width: fit-content;
+    body {
+        justify-items: center;
     }
 
-    th input {
-        width: 100%;
-        height: 50px;
+    form {
+        border: 1px solid black;
+        width: min-content;
+        padding: 10px;
+    }
+
+    p {
+        border: 1px solid black;
         text-align: right;
         font-size: 24px;
+        padding: 15px;
     }
 
     button {
+        border: none;
         width: 60px;
         height: 40px;
         text-align: center;
         margin: 2px;
+        font-size: 18px;
     }
 
     button.number {
-        background-color: white;
+        background-color: #fbfbfb;
     }
 </style>
 <body>
 <form method="post" action="">
     <table>
         <tr>
-            <th colspan="7"><input type="number" id="display" value="0"></th>
+            <th colspan="7"><p id="display">0</p></th>
         </tr>
         <tr>
             <td>
-                <button id="Rad">Rad</button>
+                <button type="button" id="Rad">Rad</button>
             </td>
             <td>
-                <button id="#"></button>
+                <button type="button" id="#"></button>
             </td>
             <td>
-                <button id="x!">x!</button>
+                <button type="button" id="x!">x!</button>
             </td>
             <td>
-                <button id="(">(</button>
+                <button type="button" id="(">(</button>
             </td>
             <td>
-                <button id=")">)</button>
+                <button type="button" id=")">)</button>
             </td>
             <td>
-                <button id="%">%</button>
+                <button type="button" id="%">%</button>
             </td>
             <td>
-                <button id="AC" type="reset">AC</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="lnv">lnv</button>
-            </td>
-            <td>
-                <button id="sin">sin</button>
-            </td>
-            <td>
-                <button id="ln">ln</button>
-            </td>
-            <td>
-                <button id="7" class="number">7</button>
-            </td>
-            <td>
-                <button id="8" class="number">8</button>
-            </td>
-            <td>
-                <button id="9" class="number">9</button>
-            </td>
-            <td>
-                <button id="/"><i class="fa-divide"></i></button>
+                <button type="button" id="AC" type="reset">AC</button>
             </td>
         </tr>
         <tr>
             <td>
-                <button id="Pi">Pi</button>
+                <button type="button" id="lnv">lnv</button>
             </td>
             <td>
-                <button id="cos">cos</button>
+                <button type="button" id="sin">sin</button>
             </td>
             <td>
-                <button id="log">log</button>
+                <button type="button" id="ln">ln</button>
             </td>
             <td>
-                <button id="4" class="number">4</button>
+                <button type="button" id="7" class="number">7</button>
             </td>
             <td>
-                <button id="5" class="number">5</button>
+                <button type="button" id="8" class="number">8</button>
             </td>
             <td>
-                <button id="6" class="number">6</button>
+                <button type="button" id="9" class="number">9</button>
             </td>
             <td>
-                <button id="x">x</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="e">e</button>
-            </td>
-            <td>
-                <button id="tan">tan</button>
-            </td>
-            <td>
-                <button id="cawn">cawn</button>
-            </td>
-            <td>
-                <button id="1" class="number">1</button>
-            </td>
-            <td>
-                <button id="2" class="number">2</button>
-            </td>
-            <td>
-                <button id="3" class="number">3</button>
-            </td>
-            <td>
-                <button id="-">-</button>
+                <button type="button" id="/"><i class="fa-divide"></i></button>
             </td>
         </tr>
         <tr>
             <td>
-                <button id="Ans">Ans</button>
+                <button type="button" id="Pi">Pi</button>
             </td>
             <td>
-                <button id="EXP">EXP</button>
+                <button type="button" id="cos">cos</button>
             </td>
             <td>
-                <button id="xy">x<sup>y</sup></button>
+                <button type="button" id="log">log</button>
             </td>
             <td>
-                <button id="0" class="number">0</button>
+                <button type="button" id="4" class="number">4</button>
             </td>
             <td>
-                <button id="." class="number" style="font-size: 24px">.</button>
+                <button type="button" id="5" class="number">5</button>
             </td>
             <td>
-                <button id="=" style="background-color: blue">=</button>
+                <button type="button" id="6" class="number">6</button>
             </td>
             <td>
-                <button id="+">+</button>
+                <button type="button" id="x">x</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" id="e">e</button>
+            </td>
+            <td>
+                <button type="button" id="tan">tan</button>
+            </td>
+            <td>
+                <button type="button" id="cawn">cawn</button>
+            </td>
+            <td>
+                <button type="button" id="1" class="number">1</button>
+            </td>
+            <td>
+                <button type="button" id="2" class="number">2</button>
+            </td>
+            <td>
+                <button type="button" id="3" class="number">3</button>
+            </td>
+            <td>
+                <button type="button" id="-">-</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" id="Ans">Ans</button>
+            </td>
+            <td>
+                <button type="button" id="EXP">EXP</button>
+            </td>
+            <td>
+                <button type="button" id="xy">x<sup>y</sup></button>
+            </td>
+            <td>
+                <button type="button" id="0" class="number">0</button>
+            </td>
+            <td>
+                <button type="button" id="." class="number" style="font-size: 24px">.</button>
+            </td>
+            <td>
+                <button type="button" id="=" style="background-color: blue">=</button>
+            </td>
+            <td>
+                <button type="button" id="+">+</button>
             </td>
         </tr>
     </table>

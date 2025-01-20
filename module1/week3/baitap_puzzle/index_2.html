@@ -1,10 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-<body>
-$END$
+<style>
+    body {
+        justify-items: center;
+    }
+
+    img {
+        width: 600px;
+        height: 100px;
+    }
+</style>
+<body onload="init()">
+<table id="table">
+    <tr>
+        <td><img id="img1" src="assets/image2/funny-cat1_part1x1.jpg" onclick="changeImg(this)"></td>
+    </tr>
+    <tr>
+        <td><img id="img2" src="assets/image2/monkey_part2x1.jpg" onclick="changeImg(this)"></td>
+    </tr>
+    <tr>
+        <td><img id="img3" src="assets/image2/monkey_part3x1.jpg" onclick="changeImg(this)"></td>
+    </tr>
+    <tr>
+        <td><img id="img4" src="assets/image2/panda_swap_part4x1.jpg" onclick="changeImg(this)"></td>
+    </tr>
+    <tr>
+        <td><img id="img5" src="assets/image2/monkey_part5x1.jpg" onclick="changeImg(this)"></td>
+    </tr>
+</table>
+
+<script>
+    let part1 = document.getElementById("img1");
+    let part2 = document.getElementById("img2");
+    let part3 = document.getElementById("img3");
+    let part4 = document.getElementById("img4");
+    let part5 = document.getElementById("img5");
+    let table = document.getElementById("table");
+
+    function changeImg(img) {
+        if (img.src.includes("funny-cat1_part1x1")) {
+            img.src = "assets/image2/monkey_part1x1.jpg";
+        } else if (img.src.includes("monkey_part1x1")) {
+            img.src = "assets/image2/panda_swap_part1x1.jpg";
+        } else if (img.src.includes("panda_swap_part1x1")) {
+            img.src = "assets/image2/funny-cat1_part1x1.jpg";
+        } else if (img.src.includes("monkey_part2x1.jpg")) {
+            img.src = "assets/image2/panda_swap_part2x1.jpg";
+        } else if (img.src.includes("panda_swap_part2x1")) {
+            img.src = "assets/image2/funny-cat1_part2x1.jpg";
+        } else if (img.src.includes("funny-cat1_part2x1")) {
+            img.src = "assets/image2/monkey_part2x1.jpg";
+        } else if (img.src.includes("monkey_part3x1")) {
+            img.src = "assets/image2/panda_swap_part3x1.jpg";
+        } else if (img.src.includes("panda_swap_part3x1")) {
+            img.src = "assets/image2/funny-cat1_part3x1.jpg";
+        } else if (img.src.includes("funny-cat1_part3x1")) {
+            img.src = "assets/image2/monkey_part3x1.jpg";
+        } else if (img.src.includes("panda_swap_part4x1")) {
+            img.src = "assets/image2/funny-cat1_part4x1.jpg";
+        } else if (img.src.includes("funny-cat1_part4x1")) {
+            img.src = "assets/image2/monkey_part4x1.jpg";
+        } else if (img.src.includes("monkey_part4x1")) {
+            img.src = "assets/image2/panda_swap_part4x1.jpg";
+        } else if (img.src.includes("monkey_part5x1")) {
+            img.src = "assets/image2/panda_swap_part5x1.jpg";
+        } else if (img.src.includes("panda_swap_part5x1")) {
+            img.src = "assets/image2/funny-cat1_part5x1.jpg";
+        } else if (img.src.includes("funny-cat1_part5x1")) {
+            img.src = "assets/image2/monkey_part5x1.jpg";
+        }
+
+        check()
+    }
+
+    function check() {
+        if ((part1.src.includes("funny-cat1_part1x1")
+            && part2.src.includes("funny-cat1_part2x1")
+            && part3.src.includes("funny-cat1_part3x1")
+            && part4.src.includes("funny-cat1_part4x1")
+            && part5.src.includes("funny-cat1_part5x1")
+        ) || (part1.src.includes("monkey_part1x1")
+            && part2.src.includes("monkey_part2x1")
+            && part3.src.includes("monkey_part3x1")
+            && part4.src.includes("monkey_part4x1")
+            && part5.src.includes("monkey_part5x1")
+        ) || (part1.src.includes("panda_swap_part1x1")
+            && part2.src.includes("panda_swap_part2x1")
+            && part3.src.includes("panda_swap_part3x1")
+            && part4.src.includes("panda_swap_part4x1")
+            && part5.src.includes("panda_swap_part5x1")
+        )) {
+            table.style.backgroundColor = "#71fb00";
+        } else {
+            table.style.backgroundColor = "white";
+        }
+    }
+</script>
 </body>
 </html>
