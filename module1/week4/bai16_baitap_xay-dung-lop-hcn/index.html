@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="justify-items: center;">
+<canvas id="myCanvas" width="600" height="500" style="border:1px solid #d3d3d3;"></canvas>
+<p id="display"></p>
+<script>
+    let ctx = document.getElementById("myCanvas").getContext("2d");
+    let display = document.getElementById("display");
+    let Rectangle = function (length, width) {
+        this.length = length;
+        this.width = width;
+
+        this.getArea = function () {
+            return this.length * this.width;
+        }
+        this.getPerimeter = function () {
+            return 2 * (this.length + this.width);
+        }
+        this.setWidth = function (newWidth) {
+            this.width = newWidth;
+        }
+        this.setLength = function (newLength) {
+            this.length = newLength;
+        }
+    }
+
+    function drawRectangle(rectangle) {
+        ctx.fillStyle = "#ed5656";
+        ctx.fillRect(100, 100, rectangle.length, rectangle.width);
+    }
+
+    let rectangle = new Rectangle(90, 30);
+    drawRectangle(rectangle);
+
+    setTimeout(() => {
+        ctx.clearRect(0, 0, 600, 500);
+        rectangle.setWidth(120);
+        rectangle.setLength(80);
+        drawRectangle(rectangle);
+        display.innerHTML = `Area : ${rectangle.getArea()} , Perimeter : ${rectangle.getPerimeter()}`;
+    }, 2000);
+</script>
+</body>
+</html>
