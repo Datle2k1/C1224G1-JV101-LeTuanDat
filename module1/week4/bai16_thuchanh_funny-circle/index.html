@@ -7,6 +7,7 @@
 <body>
 <canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"></canvas>
 <script>
+    let ctx = document.getElementById("myCanvas").getContext("2d");
     let Circle = function (x, y, radius, color) {
         this.x = x;
         this.y = y;
@@ -31,7 +32,6 @@
 
     function createCircle() {
         let circle = randomCircle();
-        var ctx = document.getElementById("myCanvas").getContext("2d");
         ctx.beginPath();
         ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
         ctx.fillStyle = circle.color;

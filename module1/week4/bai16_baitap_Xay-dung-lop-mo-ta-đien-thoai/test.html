@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let grades = [73, 68, 40];
+    for (let i = 0; i < grades.length; i++) {
+        if (grades >= 38) {
+            let next = grades[i] - grades[i] % 10;
+            console.log(next);
+            if (next + 5 - grades[i] < 3) {
+                grades[i] = next + 5;
+            } else if (next + 10 - grades[i] < 3) {
+                grades[i] = next + 10;
+            }
+        }
+    }
+    console.log(grades);
+</script>
+</body>
+</html>
