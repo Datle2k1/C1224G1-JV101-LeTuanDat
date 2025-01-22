@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    td {
+        border: 1px solid black;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+</style>
+<body onload="init()" style="justify-items: center;">
+<div id="container"></div>
+
+<script>
+    let container = document.getElementById('container');
+    let Data = function (row, col) {
+        this.row = row;
+        this.col = col;
+    }
+    let Status = function () {
+        this.countBLock = 0;
+        this.isExit = false;
+        this.matched = [];
+        this.reset = function () {
+            this.countBLock = 0;
+            this.isExit = false;
+            this.matched = [];
+        }
+    }
+    let Player = function (name, flag, isTurn) {
+        this.name = name;
+        this.flag = flag;
+        this.isTurn = isTurn;
+    }
+    let Board = function (match) {
+        this.color = "#ffffff";
+        this.match = match;
+
+        this.initDataBoard = function () {
+            let size = parseInt(prompt("Enter size board : ", "9"));
+            this.data = Array(size).fill(0).map(() => Array(size).fill(0));
+        }
+
+        this.drawBoard = function (locate1, locate2) {
+            if (locate1 !== -2 && locate2 !== -2) {
+                if (this.data[locate1][locate2] === 0) {
+                    this.data[locate1][locate2] = this.match.turnOfPlayer().flag;
+                }
+            }
+
+            let result = "<table>";
+            for (let i = 0; i < this.data.length; i++) {
+                result += "<tr>";
+                for (let j = 0; j < this.data[i].length; j++) {
+                    if (this.match.finished) {
+                        if (this.match.status.matched.length >= 1) {
+                            this.defineColor(i, j);
+                        } else {
+                            this.color = "#ffffff";
+                        }
+                    }
+                    result += "<td onclick='eventClick(" + i + "," + j + ")'" +
+                        " style='background-color: " + this.color + "'>"
+                    switch (this.data[i][j]) {
+                        case 1:
+                            result += "x";
+                            break;
+                        case -1:
+                            result += "o";
+                            break;
+                        default:
+                            result += "";
+                    }
+                    result += "</td>";
+                }
+                result += "</tr>";
+            }
+            result += "</table>";
+            container.innerHTML = result;
+
+            if (locate1 !== -2 && locate2 !== -2) {
+                this.match.status.matched.push(new Data(locate1, locate2));
+                this.checkVertical(locate1, locate2, this.data[locate1][locate2]);
+                this.checkHorizontal(locate1, locate2, this.data[locate1][locate2]);
+                this.checkCrossLeft(locate1, locate2, this.data[locate1][locate2]);
+                this.checkCrossRight(locate1, locate2, this.data[locate1][locate2]);
+            }
+        }
+        this.checkVertical = function (locate1, locate2, player) {
+            while (true) {
+                if (this.inRange(locate1 + this.match.status.matched.length)) {
+                    switch (this.data[locate1 + this.match.status.matched.length][locate2]) {
+                        case player:
+                            let data = new Data(locate1 + this.match.status.matched.length, locate2)
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 1 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+            while (true) {
+                this.match.status.isExit = false;
+                if (this.inRange(locate1 - this.match.status.matched.length)) {
+                    switch (this.data[locate1 - this.match.status.matched.length][locate2]) {
+                        case player:
+                            let data = new Data(locate1 - this.match.status.matched.length, locate2);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 2 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+
+            this.match.checkAnyOneWin(player)
+        }
+        this.checkHorizontal = function (locate1, locate2, player) {
+            while (true) {
+                if (this.inRange(locate2 - this.match.status.matched.length)) {
+                    switch (this.data[locate1][locate2 - this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(locate1, locate2 - this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 1 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+            while (true) {
+                this.match.status.isExit = false;
+                if (this.inRange(locate2 + this.match.status.matched.length)) {
+                    switch (this.data[locate1][locate2 + this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(locate1, locate2 + this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 2 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+
+            this.match.checkAnyOneWin(player)
+        }
+        this.checkCrossLeft = function (locate1, locate2, player) {
+            while (true) {
+                if (this.inRange(locate1 - this.match.status.matched.length) && this.inRange(locate2 + this.match.status.matched.length)) {
+                    switch (this.data[locate1 - this.match.status.matched.length][locate2 + this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(
+                                locate1 - this.match.status.matched.length,
+                                locate2 + this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 1 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+            while (true) {
+                this.match.status.isExit = false;
+                if (this.inRange(locate1 + this.match.status.matched.length) && this.inRange(locate2 - this.match.status.matched.length)) {
+                    switch (this.data[locate1 + this.match.status.matched.length][locate2 - this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(
+                                locate1 + this.match.status.matched.length,
+                                locate2 - this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 2 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+
+            this.match.checkAnyOneWin(player)
+        }
+        this.checkCrossRight = function (locate1, locate2, player) {
+            while (true) {
+                if (this.inRange(locate1 + this.match.status.matched.length) && this.inRange(locate2 + this.match.status.matched.length)) {
+                    switch (this.data[locate1 + this.match.status.matched.length][locate2 + this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(
+                                locate1 + this.match.status.matched.length,
+                                locate2 + this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 1 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+            while (true) {
+                this.match.status.isExit = false;
+                if (this.inRange(locate1 - this.match.status.matched.length) && this.inRange(locate2 - this.match.status.matched.length)) {
+                    switch (this.data[locate1 - this.match.status.matched.length][locate2 - this.match.status.matched.length]) {
+                        case player:
+                            let data = new Data(
+                                locate1 - this.match.status.matched.length,
+                                locate2 - this.match.status.matched.length);
+                            this.match.status.matched.push(data);
+                            break;
+                        case -player:
+                            this.match.status.countBLock++;
+                            break;
+                        default:
+                            this.match.status.isExit = true;
+                    }
+                    if (this.match.status.countBLock === 2 || this.match.status.isExit) break;
+                } else {
+                    break;
+                }
+            }
+
+            this.match.checkAnyOneWin(player)
+        }
+
+        this.inRange = function (index) {
+            return index >= 0 && index < this.data.length;
+        }
+        this.defineColor = function (row, col) {
+            let count = this.match.status.matched.length;
+            while (count > 0) {
+                if (this.match.status.matched[count - 1].row === row &&
+                    this.match.status.matched[count - 1].col === col) {
+                    this.match.status.matched.splice(count - 1, 1);
+                    this.color = "#73FF00FF";
+                    break;
+                } else {
+                    this.color = "#ffffff";
+                }
+                count--;
+            }
+        }
+    }
+    let Match = function () {
+        this.board = new Board(this);
+        this.finished = false;
+        this.status = new Status();
+
+        this.setPlayer = function () {
+            let name1 = prompt("Nhập tên người chơi 1 : ");
+            this.player1 = new Player(name1, 1, true);
+            let name2 = prompt("Nhập tên người chơi 2 : ");
+            this.player2 = new Player(name2, -1, false);
+        }
+        this.turnOfPlayer = function () {
+            const currentPlayer = this.player1.isTurn ? this.player1 : this.player2;
+            const nextPlayer = this.player1.isTurn ? this.player2 : this.player1;
+
+            currentPlayer.isTurn = false;
+            nextPlayer.isTurn = true;
+
+            return currentPlayer;
+        }
+        this.checkAnyOneWin = function (player) {
+            if ((this.status.matched.length >= 5 && this.status.countBLock > 0) ||
+                (this.status.matched.length >= 3 && this.status.countBLock === 0)) {
+                this.finished = true;
+                this.board.drawBoard(-2, -2);
+                setTimeout(() => {
+                    alert(`Player ${player === -1 ? "o" : "x"} WIN`);
+                    this.status.reset()
+                    init()
+                }, 100);
+            }
+            this.status.reset()
+        }
+    }
+
+    function eventClick(row,col) {
+        board.drawBoard(row,col);
+    }
+
+    let board;
+    function init() {
+        let match = new Match();
+        board = match.board;
+        match.board.initDataBoard();
+        match.setPlayer();
+        match.board.drawBoard(-2,-2);
+    }
+</script>
+</body>
+</html>
