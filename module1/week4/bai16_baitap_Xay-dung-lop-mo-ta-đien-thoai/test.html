@@ -6,19 +6,17 @@
 </head>
 <body>
 <script>
-    let grades = [73, 68, 40];
-    for (let i = 0; i < grades.length; i++) {
-        if (grades >= 38) {
-            let next = grades[i] - grades[i] % 10;
-            console.log(next);
-            if (next + 5 - grades[i] < 3) {
-                grades[i] = next + 5;
-            } else if (next + 10 - grades[i] < 3) {
-                grades[i] = next + 10;
-            }
-        }
+    function saveThePrisoner(n, m, s) {
+        let balance = m % n;
+        let last = n - s + 1;
+        return last >= balance ? ( balance === 0 && s ===  1 ? n : balance + s - 1 ) : balance - last;
     }
-    console.log(grades);
+
+    let n = 7;
+    let m = 19;
+    let s = 2;
+
+    alert(saveThePrisoner(n, m, s));
 </script>
 </body>
 </html>
