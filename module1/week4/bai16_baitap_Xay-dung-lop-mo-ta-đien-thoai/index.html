@@ -6,13 +6,11 @@
 </head>
 <body style="justify-items: center;">
 <script>
-    let Mobile = function (name, battery, mailIsWriting, mailReceived, mailSent, status) {
+    let Mobile = function (name, battery, status) {
         this.name = name
         this.battery = battery;
-        this.mailIsWritting = mailIsWriting;
-        this.mailReceived = mailReceived;
-        this.mailSent = mailSent;
         this.status = status;
+        this.mailReceived = [];
 
         this.notification = function (content) {
             alert(`${this.name} - ${content}`);
@@ -58,12 +56,11 @@
                 this.notification(`Message received: ${content}`);
             }
         }
-        this.sendMail = function () {
+        this.sendMail = function (mobile) {
             if (this.isOn()) {
                 this.handleBattery();
-                return this.mailIsWritting;
+                mobile.receiveMail(this.mailIsWritting);
             }
-            return "";
         }
         this.showMailReceived = function () {
             if (this.isOn()) {
@@ -79,14 +76,14 @@
         }
     }
 
-    let android = new Mobile("android",10, "", [], [],false);
-    let iphone = new Mobile("iphone",10, "", [], [],false);
+    let android = new Mobile("android",10,false);
+    let iphone = new Mobile("iphone",10,false);
 
     android.controlMobile();
     iphone.controlMobile();
 
     android.writeMessage("Helllo IPHONEEE");
-    iphone.receiveMail(android.sendMail());
+    android.sendMail(iphone);
 
     iphone.showMailReceived()
 </script>
