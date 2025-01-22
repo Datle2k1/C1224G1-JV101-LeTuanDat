@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let Remote = function (tv) {
+        this.tv = tv;
+
+        this.turnOn = function () {
+            this.tv.turnOn();
+        }
+        this.setChannel = function (channel) {
+            this.tv.changeChannel(channel);
+        };
+        this.setVolume = function () {
+            let vol = Math.floor(Math.random() * 2) + 1;
+            if (vol === 1) {
+                this.tv.changeVolume(this.tv.volume+=10);
+            } else {
+                this.tv.changeVolume(this.tv.volume-=10);
+            }
+        };
+    }
+
+    let TV = function (channel, volume, status) {
+        this.channel = channel;
+        this.volume = volume;
+        this.status = status;
+
+        this.turnOn = function () {
+            this.status = !this.status;
+            console.log(`${this.status? "tv is on" : "tv is off"}`);
+        }
+        this.changeChannel = function (channel) {
+            this.channel = channel;
+            console.log(`Current channel is ${this.channel}`);
+        };
+        this.changeVolume = function (volume) {
+            this.volume = volume;
+            console.log(`Current Volume is ${this.volume}`);
+        };
+    }
+
+    let tv = new TV("Channel 1", 50, false);
+    let remote = new Remote(tv);
+
+    console.log(`Current channel is ${tv.channel}`);
+    console.log(`Current volume is ${tv.channel}`);
+    remote.turnOn();
+    remote.setChannel("Channel 7");
+    remote.setVolume();
+</script>
+</body>
+</html>
