@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Game</title>
+</head>
+<body onload="init()">
+<canvas id="myCanvas" width="800" height="600" style="border:1px solid #c3c3c3;"></canvas>
+<p id="display" style="font-size: 30px; align-content: center;"></p>
+<p id="display2" style="font-size: 30px; align-content: center;"></p>
+
+<script>
+    let apples = [];
+    let hurdles = [];
+    let car;
+    let score = 0;
+    let finished = false;
+    let animationId;
+    let currentAngle = 0;
+    let direction = ["bottom", "right", "top", "left"];
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    document.addEventListener("keydown", (event) => {
+        switch (event.key) {
+            case "ArrowRight":
+                car.setDirection("right");
+                break;
+            case "ArrowUp":
+                car.setDirection("top")
+                break;
+            case "ArrowDown":
+                car.setDirection("bottom")
+                break;
+            case "ArrowLeft":
+                car.setDirection("left")
+                break;
+            case "Control":
+                car.increaseSpeed()
+                break;
+            case "Alt":
+                car.decreaseSpeed()
+                break;
+        }
+    });
+
+    let Locate = function (x, y) {
+        this.x = x;
+        this.y = y;
+    };
+    let Car = function (img) {
+        this.locate = randomLocate();
+        this.img = img;
+        this.speed = 2;
+        this.way = "bottom";
+        this.radian = 0;
+
+        this.setDirection = function (direct) {
+            let currentIndex = direction.indexOf(this.way);
+            let newIndex = direction.indexOf(direct);
+            let number = newIndex - currentIndex
+
+            switch (number) {
+                case 1:
+                case -3:
+                    currentAngle += (-90);
+                    this.radian = currentAngle * Math.PI / 180;
+                    break;
+                case -1:
+                case 3:
+                    currentAngle += 90;
+                    this.radian = currentAngle * Math.PI / 180;
+                    break;
+                case 2:
+                case -2:
+                    currentAngle += 180;
+                    this.radian = currentAngle * Math.PI / 180;
+            }
+            this.way = direct;
+        }
+        this.move = function () {
+            switch (this.way) {
+                case "left":
+                    this.locate.x -= this.speed;
+                    if (this.locate.x < 50) this.locate.x = canvas.width - 50;
+                    break;
+                case "right":
+                    this.locate.x += this.speed;
+                    if (this.locate.x > canvas.width - 50) this.locate.x = 50;
+                    break;
+                case "top":
+                    this.locate.y -= this.speed;
+                    if (this.locate.y < 50) this.locate.y = canvas.height - 50;
+                    break;
+                case "bottom":
+                    this.locate.y += this.speed;
+                    if (this.locate.y > canvas.height - 50) this.locate.y = 50;
+                    break;
+            }
+        };
+        this.increaseSpeed = function () {
+            this.speed += 1;
+        };
+        this.decreaseSpeed = function () {
+            if (this.speed > 1) {
+                this.speed -= 1;
+            }
+        };
+    };
+    let Apple = function (img) {
+        this.locate = randomLocate();
+        this.img = img;
+    };
+    let Hurdle = function (img) {
+        this.locate = randomLocate();
+        this.img = img;
+    };
+
+    function init() {
+        for (let i = 0; i < 5; i++) {
+            const appleImg = new Image();
+            appleImg.src = "apple.png";
+            appleImg.onload = () => apples.push(new Apple(appleImg));
+
+            const hurdleImg = new Image();
+            hurdleImg.src = "trap.png";
+            hurdleImg.onload = () => hurdles.push(new Hurdle(hurdleImg));
+        }
+
+        const carImg = new Image();
+        carImg.src = "car.png";
+        carImg.onload = () => {
+            car = new Car(carImg);
+            if (animationId) cancelAnimationFrame(animationId);
+            gameLoop();
+        };
+    }
+
+    function draw() {
+        // clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // draw score
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(`${score}`, 60, 35);
+        let appleScore = new Image();
+        appleScore.src = "apple.png";
+        ctx.drawImage(appleScore, 0, 0, 50, 50);
+
+        // draw apples and hurdles
+        apples.forEach((apple) => {
+            ctx.drawImage(apple.img, apple.locate.x, apple.locate.y, 50, 50);
+        });
+        hurdles.forEach((hurdle) => {
+            ctx.drawImage(hurdle.img, hurdle.locate.x, hurdle.locate.y, 50, 50);
+        });
+
+        // rotate and draw car.
+        ctx.save();
+        ctx.translate(car.locate.x + 25, car.locate.y + 25);
+        ctx.rotate(car.radian);
+        ctx.drawImage(car.img, -25, -25, 50, 50);
+        ctx.restore();
+    }
+
+    function gameLoop() {
+        if (!finished) {
+            draw();
+            checkVar();
+            car.move();
+            animationId = requestAnimationFrame(gameLoop);
+        }
+    }
+
+    function randomLocate() {
+        let x = Math.floor(Math.random() * (canvas.width - 50));
+        let y = Math.floor(Math.random() * (canvas.height - 150 + 1) + 100);
+        return new Locate(x, y);
+    }
+
+    function checkVar() {
+        for (let i = 0; i < apples.length; i++) {
+            if (isColliding(car, apples[i])) {
+                score++;
+                apples.splice(i, 1);
+                break;
+            }
+        }
+        for (let i = 0; i < hurdles.length; i++) {
+            if (isColliding(car, hurdles[i])) {
+                finished = true;
+                break;
+            }
+        }
+
+        if (finished || score === 5) {
+            cancelAnimationFrame(animationId);
+            draw();
+            alert(`You finished with Score ${score}`);
+            reset();
+            init();
+        }
+    }
+
+    function isColliding(obj1, obj2) {
+        return obj1.locate.x < obj2.locate.x + 50 &&
+            obj1.locate.x + 50 > obj2.locate.x &&
+            obj1.locate.y < obj2.locate.y + 50 &&
+            obj1.locate.y + 50 > obj2.locate.y;
+    }
+
+    function reset() {
+        apples = [];
+        hurdles = [];
+        score = 0;
+        finished = false;
+        currentAngle = 0;
+    }
+</script>
+</body>
+</html>
