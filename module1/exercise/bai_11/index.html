@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    td, th {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+
+    td input {
+        width: 100%;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body onload="init()" style="justify-content: center">
+<h1 style="text-align: center">Quản lý Học viên</h1>
+<form>
+    <div id="container"></div>
+</form>
+
+<script>
+    let container = document.getElementById("container");
+    let students = [];
+    let Student = function (ten, lop, email, ngaySinh, module) {
+        this.msv = newMSV();
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+        this.ngaySinh = ngaySinh;
+        this.module = module;
+
+        this.setValue = function (ten, lop, email, ngaySinh, module) {
+            this.ten = ten;
+            this.lop = lop;
+            this.email = email;
+            this.ngaySinh = ngaySinh;
+            this.module = module;
+        }
+    }
+
+    function drawBoardManager() {
+        let result = "<table>" +
+            "    <tr>" +
+            "        <th>Mã học viên</th>" +
+            "        <th>Tên</th>" +
+            "        <th>Lớp</th>" +
+            "        <th>Email</th>" +
+            "        <th>Ngày sinh</th>" +
+            "        <th>Module</th>" +
+            "    </tr>";
+        for (let i = 0; i < students.length; i++) {
+            result += `<tr><td>${students[i].msv}</td>` +
+                `<td>${students[i].ten}</td>` +
+                `<td>${students[i].lop}</td>` +
+                `<td>${students[i].email}</td>` +
+                `<td>${students[i].ngaySinh}</td>` +
+                `<td>${students[i].module}</td></tr>`;
+        }
+
+        result += "<tr>" +
+            "<td colspan='2' style='border: none'><input type='button' onclick='addStudent()' value='Thêm mới học viên'></td>" +
+            "<td colspan='2' style='border: none'><input type='button' onclick='editStudent()' value='Sửa thông tin học viên'></td>" +
+            "<td colspan='2' style='border: none'><input type='button' onclick='removeStudent()' value='Xóa học viên'></td>" +
+            "</tr></table>";
+        container.innerHTML = result;
+    }
+
+    function addStudent() {
+        let ten = prompt("Enter name student: ");
+        if (ten.length > 50) {
+            alert("Lỗi nhập tên quá 50 ký tự");
+            addStudent()
+        } else {
+            let lop = prompt("Enter class of student: ");
+            let email = prompt("Enter email student: ");
+            let ngaySinh = prompt("Enter birthday student: ");
+            if (!isBirthDay(ngaySinh)) {
+                alert(`Lỗi nhập ngày sinh : ${ngaySinh}`);
+                editStudent();
+            } else {
+                let module = prompt("Enter module: ");
+                if (parseInt(module) < 1 || parseInt(module) > 6) {
+                    alert("Lỗi nhập module");
+                    editStudent();
+                } else {
+                    students.push(new Student(ten, lop, email, ngaySinh, module));
+                    drawBoardManager();
+                }
+            }
+        }
+    }
+
+    function editStudent() {
+        let msv = prompt("Nhập mã sinh viên cần sửa thông tin: ", "0001");
+        let index;
+        let check = false;
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].msv.substring(3, 7) === msv) {
+                index = i;
+                check = true;
+                break;
+            }
+        }
+
+        if (!check) alert("Mã học viên không tồn tại");
+        else {
+            let ten = prompt("Sửa tên học sinh: ", students[index].ten);
+            if (ten.length > 50) {
+                alert("Lỗi nhập tên quá 50 ký tự");
+                editStudent();
+            } else {
+                let lop = prompt("Sửa lớp học sinh: ", students[index].lop);
+                let email = prompt("Sửa email học sinh: ", students[index].email);
+                let ngaySinh = prompt("Sửa ngày sinh học sinh: ", students[index].ngaySinh);
+                if (!isBirthDay(ngaySinh)) {
+                    alert(`Lỗi nhập ngày sinh : ${ngaySinh}`);
+                    editStudent();
+                } else {
+                    let module = prompt("Sửa module của học sinh: ", students[index].module);
+                    if (parseInt(module) < 1 || parseInt(module) > 6) {
+                        alert("Lỗi nhập module");
+                        editStudent();
+                    } else {
+                        students[index].setValue(ten, lop, email, ngaySinh, module);
+                        drawBoardManager();
+                    }
+                }
+            }
+        }
+    }
+
+    function removeStudent() {
+        let msv = prompt("Nhập mã sinh viên cần xóa : ", "0001");
+        let index;
+        let check = false;
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].msv.substring(3, 7) === msv) {
+                index = i;
+                check = true;
+                break;
+            }
+        }
+
+        if (check) {
+            let isRemove = confirm(`Xóa học sinh ${students[index].msv} : ${students[index].ten}`);
+            if (isRemove) {
+                students.splice(index, 1);
+                drawBoardManager();
+            }
+        } else alert("Mã học viên không tồn tại");
+    }
+
+    function init() {
+        students.push(new Student("Nguyễn Văn A", "C1022G1", "nguyenvana@gmai.com", "01/01/2001", "module - 1"));
+        students.push(new Student("Nguyễn Văn B", "C1022G1", "nguyenvanb@gmai.com", "01/01/2001", "module - 1"));
+        students.push(new Student("Nguyễn Văn C", "C1022G1", "nguyenvanc@gmai.com", "01/01/2001", "module - 1"));
+        drawBoardManager();
+    }
+
+    function newMSV() {
+        let arr = students.length !== 0 ? students[students.length - 1].msv.split("-") : ["HV", "0000"];
+        let currentIndex = parseInt(arr[1]);
+        let newIndex = ++currentIndex;
+        let count = 1;
+        let max = 4 - newIndex.toString().length
+        while (count <= max) {
+            newIndex = "0" + newIndex;
+            count++;
+        }
+        return "HV-" + newIndex;
+    }
+
+    function isBirthDay(birthday) {
+        let arr = birthday.split("/");
+        let day = isNaN(parseInt(arr[0])) ? parseInt(arr[0]) : false;
+        let month = parseInt(arr[1]) ? parseInt(arr[1]) : false;
+        let year = parseInt(arr[2]) ? parseInt(arr[2]) : false;
+        if (!day || !month || !year) {
+            return false;
+        } else {
+            if (day < 1 || day > 31 || month < 1 || month > 12) {
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
