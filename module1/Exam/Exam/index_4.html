@@ -111,6 +111,7 @@
         workers.push(new Worker("Nguyễn Văn B", formatDate(new Date("1/1/2001")), "Đà Nẵng", "15000", "abd"));
         workers.push(new Worker("Nguyễn Văn A", formatDate(new Date("1/1/2001")), "Hà Nội", "10000", "adb"));
         workers.push(new Worker("Nguyễn Văn C", formatDate(new Date("1/1/2001")), "Hồ Chí Minh", "20000", "bad"));
+        sortWorkers();
         drawBoardManager();
     }
 
@@ -119,6 +120,24 @@
         const mm = String(date.getMonth() + 1).padStart(2, '0');
         const dd = String(date.getDate()).padStart(2, '0');
         return `${dd}-${mm}-${yyyy}`;
+    }
+
+    function sortWorkers() {
+        workers.sort((worker1, worker2) => {
+            const name1 = worker1.name.toUpperCase();
+            const name2 = worker2.name.toUpperCase();
+            if (name1 < name2) {
+                let temp = worker1.index;
+                worker1.index = worker2.index;
+                worker2.index = temp;
+                return -1;
+            }
+            if (name1 > name2) {
+                return 1;
+            }
+
+            return 0;
+        });
     }
 </script>
 </body>
