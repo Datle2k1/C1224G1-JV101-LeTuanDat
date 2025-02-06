@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function findPerfectNumber() {
+        let number = prompt("Enter number: ");
+        let isNumber = true;
+        for (let item of number) {
+            if (isNaN(parseInt(item))) {
+                isNumber = false;
+            }
+        }
+
+        if (isNumber) {
+            number = parseInt(number);
+            let sum = 0;
+            for (let i = 1; i < number; i++) {
+                if (number % i === 0) {
+                    sum += i;
+                }
+            }
+
+            return sum === number;
+        } else {
+            return false;
+        }
+    }
+
+    alert(findPerfectNumber());
+</script>
+</body>
+</html>

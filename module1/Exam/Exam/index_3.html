@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function countDayOfMonth(input) {
+        let array = input.split("/");
+        let isNumber = true;
+        for (let item of array[0]) {
+            if (isNaN(parseInt(item))) {
+                isNumber = false;
+            }
+        }
+        for (let item of array[1]) {
+            if (isNaN(parseInt(item))) {
+                isNumber = false;
+            }
+        }
+
+        if (isNumber) {
+            let month = parseInt(array[0]);
+            let year = parseInt(array[1]);
+
+            if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
+                return "31";
+            } else if ([4, 6, 9, 11].includes(month)) {
+                return "30";
+            } else if (month === 2) {
+                if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+                    return "29";
+                } else {
+                    return "28";
+                }
+            } else {
+                return "Month invalid !";
+            }
+        } else {
+            return "Input invalid !";
+        }
+    }
+
+    let monthYear = prompt("Enter month & year with format MM/YYYY");
+    alert(countDayOfMonth(monthYear));
+</script>
+</body>
+</html>

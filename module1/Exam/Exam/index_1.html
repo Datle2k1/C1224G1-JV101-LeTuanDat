@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [];
+    for (let i = 0; i < 50; i++) {
+        array.push(parseInt(prompt(`Enter number at ${i}`)));
+    }
+
+    alert(`Array input : ${array}`);
+
+    let average = 0;
+    let counts = 0;
+    for (let i = 0; i < 50; i++) {
+        if (array[i] % 3 === 0) {
+            average += array[i];
+            counts++;
+        }
+    }
+
+    alert(`Average ${average/counts}`);
+</script>
+</body>
+</html>
