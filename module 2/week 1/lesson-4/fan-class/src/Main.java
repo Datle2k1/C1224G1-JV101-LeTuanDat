@@ -5,14 +5,14 @@ import static java.awt.Color.yellow;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        FanClass fan1 = new FanClass();
+        Fan fan1 = new Fan();
         fan1.setSpeed(fan1.FAST);
         fan1.setRadius(10);
         fan1.setColor(yellow.toString());
         fan1.setOn(true);
         System.out.println("fan 1 : " + fan1.toStr());
 
-        FanClass fan2 = new FanClass();
+        Fan fan2 = new Fan();
         fan2.setSpeed(fan2.MEDIUM);
         fan2.setRadius(5);
         fan2.setColor(blue.toString());

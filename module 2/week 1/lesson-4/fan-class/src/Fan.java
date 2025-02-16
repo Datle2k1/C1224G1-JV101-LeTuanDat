@@ -1,6 +1,6 @@
 import static java.awt.Color.blue;
 
-public class FanClass {
+public class Fan {
     final int LOW = 1;
     final int MEDIUM = 2;
     final int FAST = 3;
@@ -41,7 +41,7 @@ public class FanClass {
         this.color = color;
     }
 
-    public FanClass()  {}
+    public Fan()  {}
 
     public String toStr() {
         if (this.on) {
