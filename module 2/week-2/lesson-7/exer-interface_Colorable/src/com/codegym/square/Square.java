@@ -1,5 +1,6 @@
-package com.codegym;
+package com.codegym.square;
 
+import com.codegym.Shape;
 import com.codegym.colorable.Colorable;
 
 public class Square extends Shape implements Colorable {
@@ -26,7 +27,7 @@ public class Square extends Shape implements Colorable {
 
     @Override
     public String toString() {
-        return "A Square with side="
+        return "A Square with side = "
                 + side;
     }
 

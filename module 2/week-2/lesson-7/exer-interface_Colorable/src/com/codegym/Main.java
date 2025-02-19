@@ -1,5 +1,10 @@
 package com.codegym;
 
+import com.codegym.circle.Circle;
+import com.codegym.colorable.Colorable;
+import com.codegym.rectangle.Rectangle;
+import com.codegym.square.Square;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,8 +14,19 @@ public class Main {
         shapes[2] = new Square(5);
 
         for (Shape shape : shapes) {
-            if (shape instanceof Square) {
-                ((Square) shape).howToColor();
+            if (shape instanceof Circle) {
+                System.out.println(shape + ", Area : " +  ((Circle) shape).getArea());
+            } else if (shape instanceof Rectangle) {
+                System.out.println(shape + ", Area : " +  ((Rectangle) shape).getArea());
+            } else if (shape instanceof Square) {
+                System.out.println(shape + ", Area : " +  ((Square) shape).getArea());
+            } else {
+                System.out.println("Invalid");
+            }
+
+            if (shape instanceof Colorable) {
+                System.out.print(shape + ", ");
+                ((Colorable) shape).howToColor();
             }
         }
     }

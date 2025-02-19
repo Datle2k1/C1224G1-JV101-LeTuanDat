@@ -1,4 +1,6 @@
-package com.codegym;
+package com.codegym.circle;
+
+import com.codegym.Shape;
 
 public class Circle extends Shape {
     private double radius = 1.0;
@@ -33,9 +35,6 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "A Circle with radius="
-                + getRadius()
-                + ", which is a subclass of "
-                + super.toString();
+        return "A Circle with radius = " + radius;
     }
 }

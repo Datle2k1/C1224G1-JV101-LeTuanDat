@@ -1,5 +1,7 @@
-package com.codegym;
+package com.codegym.rectangle;
 
+
+import com.codegym.Shape;
 
 public class Rectangle extends Shape {
     private double width = 1.0;
@@ -45,11 +47,9 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return "A Rectangle with width="
-                + getWidth()
-                + " and length="
-                + getLength()
-                + ", which is a subclass of "
-                + super.toString();
+        return "A Rectangle with width = "
+                + width
+                + " and length = "
+                + length;
     }
 }
