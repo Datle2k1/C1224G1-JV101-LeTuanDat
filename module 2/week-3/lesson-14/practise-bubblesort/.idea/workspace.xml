@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2192d997-6d53-473d-b8f0-e4927e2b83e3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../demo/demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo/src/InsertionSortTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practise-bubblesort.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BubbleSortTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-10/my-arraylist/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-10/my-arraylist/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/circle/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/circle/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/rectangle/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/rectangle/Rectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/shape/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/shape/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/shape/ShapeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/shape/ShapeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/square/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/square/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-7/exer-interface_Colorable/src/com/codegym/square/SquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-9/fizz-buzz-translate/src/main/java/org/example/FizzBuzzTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-9/fizz-buzz-translate/src/main/java/org/example/FizzBuzzTranslate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../week-2/lesson-9/fizz-buzz-translate/src/test/java/org/example/FizzBuzzTranslateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../week-2/lesson-9/fizz-buzz-translate/src/test/java/org/example/FizzBuzzTranslateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/demo/src/TestIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/demo/src/TestIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/demo/src/TestMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/demo/src/TestMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/BinarySearchTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/BinarySearchTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/TestTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/TestTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/demo/src/tree/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/exercise.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/exercise.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/src/arraylist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/src/arraylist/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/src/arraylist/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/src/arraylist/ProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/src/linkedlist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/src/linkedlist/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/src/linkedlist/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/src/linkedlist/ProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-12/exercise/src/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-12/exercise/src/product/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson-13/demo/src/LinearSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../lesson-13/demo/src/LinearSearchTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Datle2k1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Datle2k1/C1224G1-JV101-LeTuanDat.git&quot;,
+    &quot;accountId&quot;: &quot;3836d59b-ed76-4efd-a9a0-1ff02c8dc7c1&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2tbZ68C5Z2vG0fA0YjPOmzpXzc1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BubbleSortTest.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/WorkSpace/C1224G1-JV101-LeTuanDat/module 2/week-3/lesson-14/practise-bubblesort",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "F:/WorkSpace/C1224G1-JV101-LeTuanDat/module 2/week-3/lesson-14/practise-bubblesort/src/Main.java",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\WorkSpace\C1224G1-JV101-LeTuanDat\module 2\week-3\lesson-14\practise-bubblesort" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2192d997-6d53-473d-b8f0-e4927e2b83e3" name="Changes" comment="" />
+      <created>1740622558500</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740622558500</updated>
+      <workItem from="1740622560142" duration="1480000" />
+      <workItem from="1740624158492" duration="408000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
