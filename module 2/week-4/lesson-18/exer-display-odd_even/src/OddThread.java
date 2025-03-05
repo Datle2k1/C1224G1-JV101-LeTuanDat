@@ -8,7 +8,12 @@ public class OddThread extends Thread{
 
     public void start() {
         thread.start();
-        System.out.println(thread.getName() + " started");
+        try {
+            thread.join();
+            System.out.println(thread.getName() + " started");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
