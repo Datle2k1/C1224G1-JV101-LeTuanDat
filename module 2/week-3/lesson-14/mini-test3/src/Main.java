@@ -1,7 +1,14 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        int[] list = {4,5,3,2,1,7,5,3,7};
+
         WorkerManager manager = new WorkerManager();
 
         manager.addWorker(new WorkerFullTime(1,"Name 1", 21, "0123456789", "name1@gmail.com", 1000L, 500L, 10000L));

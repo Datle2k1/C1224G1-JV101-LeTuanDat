@@ -11,7 +11,8 @@ public class Main {
         try (FileInputStream fis = new FileInputStream(path);
              ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
-            products.addAll((List<Product>) ois.readObject());
+            Object data = ois.readObject();
+            products.addAll((List<Product>) data);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -27,15 +28,10 @@ public class Main {
     }
 
     private static Object searchProduct(String key) {
-        List<Product> products = Collections.emptyList();
         try (FileInputStream fis = new FileInputStream(path);
              ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
-            Object data = ois.readObject();
-            if (data instanceof List) {
-                boolean check = Arrays.stream(((List<?>) data).toArray()).allMatch(item -> item instanceof Product);
-                products = check ? (List<Product>) data : Collections.emptyList();
-            }
+            List<Product> products = (List<Product>) ois.readObject();
             return products.stream().filter(product -> product.getName().equalsIgnoreCase(key.trim())).collect(Collectors.toList());
         } catch (IOException | ClassNotFoundException e) {
             return e;

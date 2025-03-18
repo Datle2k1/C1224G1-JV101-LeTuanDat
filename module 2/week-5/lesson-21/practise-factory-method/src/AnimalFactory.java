@@ -4,6 +4,6 @@ public class AnimalFactory {
             return new Dog();
         } else {
             return new Cat();
-        }
+        } 
     }
 }

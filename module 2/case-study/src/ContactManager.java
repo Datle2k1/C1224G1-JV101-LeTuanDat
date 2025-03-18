@@ -28,19 +28,8 @@ public class ContactManager implements Comparator<Contact>, ContactManagerFeatur
         System.out.println("\nStart add information new contact ");
         Contact contact = input(null);
 
-        boolean isExist = false;
-        for (Contact cont : contacts) {
-            if (cont.getPhone().equals(contact.getPhone())) {
-                isExist = true;
-                break;
-            }
-        }
-
-        if (isExist) System.err.println("Contact is Exist");
-        else {
-            contacts.add(contact);
-            System.out.println("Add Contact : " + contact.getName() + " success.");
-        }
+        contacts.add(contact);
+        System.out.println("Add Contact : " + contact.getName() + " success.");
         System.out.println("End add information new contact ");
     }
 
@@ -158,13 +147,14 @@ public class ContactManager implements Comparator<Contact>, ContactManagerFeatur
     }
 
     public Contact input(Contact contact) {
-        String name = inputName(contact);
         String phone = inputPhone(contact);
+        String name = inputName(contact);
         String address = inputAddress(contact);
         String email = inputEmail(contact);
         String gender = inputGender(contact);
         String birth = Util.format(inputBirthday(contact));
         String group = inputGroup(contact);
+
         return new Contact(name, phone, address, email, gender, birth, group);
     }
 
@@ -226,9 +216,23 @@ public class ContactManager implements Comparator<Contact>, ContactManagerFeatur
     private String inputPhone(Contact contact) {
         String phone;
         do {
-            System.out.print("Phone : ");
-            if (contact == null) phone = scanner.nextLine().replace(" ", "");
-            else {
+            System.out.print("\nPhone : ");
+            if (contact == null) {
+                phone = scanner.nextLine().replace(" ", "");
+
+                boolean isExist = false;
+                for (Contact value : contacts) {
+                    if (value.getPhone().equals(phone)) {
+                        isExist = true;
+                        break;
+                    }
+                }
+
+                if (isExist) {
+                    phone = "isExist";
+                    System.err.println("Phone is Exist");
+                }
+            } else {
                 phone = contact.getPhone();
                 System.out.println(phone);
             }
