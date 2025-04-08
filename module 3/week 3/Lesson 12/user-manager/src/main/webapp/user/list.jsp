@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -11,13 +10,19 @@
     <h2>
         <a href="${pageContext.request.contextPath}/users?action=create">Add New User</a>
     </h2>
+    <form method="post" action="${pageContext.request.contextPath}/users">
+        <input type="hidden" name="action" value="search"/>
+        <label>Search by Country: </label>
+        <input type="text" name="country" value="${searchCountry}"/>
+        <input type="submit" value="Search"/>
+    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th><a href="${pageContext.request.contextPath}/users">Name</a></th>
             <th>Email</th>
             <th>Country</th>
             <th>Actions</th>

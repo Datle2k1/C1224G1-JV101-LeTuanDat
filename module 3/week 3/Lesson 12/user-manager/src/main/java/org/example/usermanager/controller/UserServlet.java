@@ -1,7 +1,7 @@
 package org.example.usermanager.controller;
 
 import org.example.usermanager.model.User;
-import org.example.usermanager.model.UserDAO;
+import org.example.usermanager.service.UserDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,6 +35,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "edit":
                     updateUser(request, response);
+                    break;
+                case "search":
+                    searchUsers(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -124,6 +127,16 @@ public class UserServlet extends HttpServlet {
 
         List<User> listUser = userDAO.selectAllUsers();
         request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void searchUsers(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String country = request.getParameter("country");
+        List<User> listUser = userDAO.searchUsersByCountry(country);
+        request.setAttribute("listUser", listUser);
+        request.setAttribute("searchCountry", country); // Giữ giá trị tìm kiếm để hiển thị lại
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
     }

@@ -1,4 +1,6 @@
-package org.example.usermanager.model;
+package org.example.usermanager.service;
+
+import org.example.usermanager.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class UserDAO implements IUserDAO{
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String SEARCH_USERS_BY_COUNTRY = "SELECT * FROM users WHERE country LIKE ? ORDER BY name"; // Thêm tìm kiếm
 
     public UserDAO() {
     }
@@ -120,5 +123,24 @@ public class UserDAO implements IUserDAO{
                 }
             }
         }
+    }
+
+    public List<User> searchUsersByCountry(String country) {
+        List<User> users = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USERS_BY_COUNTRY)) {
+            preparedStatement.setString(1, "%" + country + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String countryResult = rs.getString("country");
+                users.add(new User(id, name, email, countryResult));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
     }
 }
