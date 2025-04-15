@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .product-list, .cart {
+            height: 80vh;
+            overflow-y: auto;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .product-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+        }
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="bg-dark text-white text-center py-3">
+    <h1>Shop</h1>
+</header>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 product-list">
+                <h3>Danh sách sản phẩm</h3>
+                <div class="product-item d-inline-grid align-items-center">
+                    <div class="col">
+                        <img src="resources/img/Aphelios.png" alt="Product Image" class="product-img img-fluid">
+                    </div>
+                    <div class="col">
+                        <h5>Tên sản phẩm 1</h5>
+                        <p>Giá: 100.000 VNĐ</p>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm mb-2 w-100">Thêm vào giỏ</button>
+                        <button class="btn btn-secondary btn-sm w-100">Chi tiết</button>
+                    </div>
+                </div>
+                <div class="product-item d-inline-grid align-items-center">
+                    <div class="col">
+                        <img src="resources/img/Sett.png" alt="Product Image" class="product-img img-fluid">
+                    </div>
+                    <div class="col">
+                        <h5>Tên sản phẩm 2</h5>
+                        <p>Giá: 150.000 VNĐ</p>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm mb-2 w-100">Thêm vào giỏ</button>
+                        <button class="btn btn-secondary btn-sm w-100">Chi tiết</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 cart bg-light p-3">
+                <h3>Giỏ hàng</h3>
+                <div class="cart-item">
+                    <p>Tên sản phẩm 1 - 100.000 VNĐ</p>
+                </div>
+                <div class="cart-item">
+                    <p>Tên sản phẩm 2 - 150.000 VNĐ</p>
+                </div>
+                <div class="mt-3">
+                    <h5>Tổng giá: 250.000 VNĐ</h5>
+                    <button class="btn btn-success w-100">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Web Shop. All rights reserved.</p>
+</footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,22 +1,52 @@
 @startuml
-'https://plantuml.com/use-case-diagram
 
-:Main Admin: as Admin
-(Use the application) as (Use)
+entity Customer {
+    *customer_id: INT
+    --
+    name: VARCHAR(30)
+    email: VARCHAR(30)
+    password: VARCHAR(50)
+    in_game: VARCHAR(30)
+}
 
-User -> (Start)
-User --> (Use)
+entity Champion {
+    *champion_id: INT
+    --
+    name: VARCHAR(30)
+    thumbnail_url: VARCHAR(255)
+}
 
-Admin ---> (Use)
+entity Skin {
+    +skin_id: INT
+    +champion_id: INT
+    --
+    name: VARCHAR(30)
+    thumbnail_url: VARCHAR(255)
+    video_url: VARCHAR(255)
+    price: DECIMAL(10,2)
+}
 
-note right of Admin : This is an example.
+entity Order {
+    *customer_id: INT
+    *order_id: INT
+    --
+    order_date: Date
+    total_price: DECIMAL(10,2)
+    is_paid: Boolean
+}
 
-note right of (Use)
-A note can also
-be on several lines
-end note
+entity OrderDetail {
+    *order_id: INT
+    *skin_id: INT
+}
 
-note "This note is connected\nto several objects." as N2
-(Start) .. N2
-N2 .. (Use)
+Customer ||--o{ Order : places
+
+Champion ||--o{ Skin : have
+
+Order ||--|{ OrderDetail : contains
+
+OrderDetail }|--|| Skin : includes
+
+
 @enduml
