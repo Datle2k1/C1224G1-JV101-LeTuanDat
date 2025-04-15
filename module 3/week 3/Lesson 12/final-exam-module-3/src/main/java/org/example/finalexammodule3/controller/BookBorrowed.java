@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "BookBorrowed", value = "/book-borrowed")
 public class BookBorrowed extends HttpServlet {
+    private HttpSession session;
     private LibraryDao libraryDao;
 
     @Override
@@ -23,6 +25,7 @@ public class BookBorrowed extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        session = req.getSession();
         String action = req.getParameter("action");
         if (action == null) action = "";
 
@@ -36,19 +39,28 @@ public class BookBorrowed extends HttpServlet {
         String action = req.getParameter("action");
         if (action == null) action = "";
 
-        if (action.equals("return")) {
-            returnBook(req, resp);
-        } else if (action.equals("confirm")) {
+        if (action.equals("confirm")) {
+            String idBook = req.getParameter("idBook");
+            session.setAttribute("idCard",req.getParameter("idCard"));
+            session.setAttribute("idBook",idBook);
+            req.setAttribute("nameBookReturn", libraryDao.getBookById(idBook).getName());
             req.setAttribute("confirm", true);
+
+            List<Card> cards = libraryDao.getAllCard();
+            req.setAttribute("cards", cards);
             req.getRequestDispatcher("view/bookborrowed.jsp").forward(req, resp);
+        } else if (action.equals("return")) {
+            returnBook(req, resp);
+            session.removeAttribute("idCard");
+            session.removeAttribute("idBook");
         }
     }
 
     private void returnBook(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String idCard = req.getParameter("idCard");
-        String idBook = req.getParameter("idBook");
+        String idCard = session.getAttribute("idCard").toString();
+        String idBook = session.getAttribute("idBook").toString();
         libraryDao.returnBook(idCard, idBook);
-        resp.sendRedirect("bookborrowed");
+        resp.sendRedirect("book-borrowed");
     }
 
     private void getBookBorrowed(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

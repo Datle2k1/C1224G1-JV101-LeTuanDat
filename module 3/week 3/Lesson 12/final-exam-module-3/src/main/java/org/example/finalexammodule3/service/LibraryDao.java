@@ -12,8 +12,10 @@ import java.util.List;
 public class LibraryDao {
     private final Connection connection;
 
+    private static final String REMOVE_CARD = "delete from card where id = ?";
     private static final String SELECT_ALL_CARD = "select card.id as idCard,card.status,card.dateBorrowed,card.dateReturn, book.id as idBook, book.name as nameBook, book.author, book.description, book.quantity, student.id as idStudent, student.name as nameStudent, student.classes from card inner join book on card.idBook = book.id inner join student on card.idStudent = student.id";
-    private static final String UPDATE_QUANTITY_BOOK = "update book set quantity = quantity - 1 where id = ?";
+    private static final String DECREASE_QUANTITY_BOOK = "update book set quantity = quantity - 1 where id = ?";
+    private static final String INCREASE_QUANTITY_BOOK = "update book set quantity = quantity + 1 where id = ?";
     private static final String SELECT_ALL_BOOK = "select * from book";
     private static final String SELECT_BOOK_BY_ID_AVAILABLE = "select * from book where id = ? and quantity > 0";
     private static final String SELECT_ALL_STUDENT = "select * from student";
@@ -71,7 +73,7 @@ public class LibraryDao {
             preparedStatement1.setDate(6, Date.valueOf(dateReturn));
             boolean result1 = preparedStatement1.executeUpdate() > 0;
 
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUANTITY_BOOK);
+            PreparedStatement preparedStatement = connection.prepareStatement(DECREASE_QUANTITY_BOOK);
             preparedStatement.setString(1, idBook);
             boolean result2 = preparedStatement.executeUpdate() > 0;
 
@@ -171,6 +173,16 @@ public class LibraryDao {
     }
 
     public void returnBook(String idCard, String idBook) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_CARD);
+            preparedStatement.setString(1,idCard);
+            preparedStatement.executeUpdate();
 
+            PreparedStatement preparedStatement1 = connection.prepareStatement(INCREASE_QUANTITY_BOOK);
+            preparedStatement1.setString(1, idBook);
+            preparedStatement1.executeUpdate();
+        }catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

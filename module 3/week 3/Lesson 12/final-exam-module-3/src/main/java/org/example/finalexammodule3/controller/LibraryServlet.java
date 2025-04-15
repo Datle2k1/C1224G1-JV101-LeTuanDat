@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "LibraryServlet", value = "/all-book")
 public class LibraryServlet extends HttpServlet {
+    private HttpSession session;
     private LibraryDao libraryDao;
 
     @Override
@@ -23,6 +24,7 @@ public class LibraryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        session = req.getSession();
         String action = req.getParameter("action");
         if (action == null) action = "";
 
@@ -30,6 +32,7 @@ public class LibraryServlet extends HttpServlet {
             List<Book> books = libraryDao.getAllBook();
             req.setAttribute("books", books);
             req.getRequestDispatcher("view/library.jsp").forward(req, resp);
+            session.removeAttribute("IsBorrowed");
         }
     }
 

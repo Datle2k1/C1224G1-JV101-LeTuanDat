@@ -17,12 +17,15 @@
 </head>
 <body>
 
-<c:if test="${notAvailable}">
+<c:if test="${confirm}">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <div><p>Lỗi !!!</p></div>
-        <div><p>Cuốn sách này tạm thời đã cho mượn hết, vui lòng chọn sách khác</p></div>
-        <a href="${pageContext.request.contextPath}/all-book">
-            <button type="button" class="btn-close" aria-label="Close"></button>
+        <div><p>Bạn muốn trả cuốn sách ${nameBookReturn} ?</p></div>
+        <form action="${pageContext.request.contextPath}/book-borrowed" method="post">
+            <input type="hidden" name="action" value="return">
+            <button type="submit">Xác nhận</button>
+        </form>
+        <a href="${pageContext.request.contextPath}/book-borrowed">
+            <button type="button">Hủy</button>
         </a>
     </div>
 </c:if>
@@ -60,7 +63,7 @@
                     <input type="hidden" name="action" value="confirm">
                     <input type="hidden" name="idCard" value="${card.getId()}">
                     <input type="hidden" name="idBook" value="${card.getBook().getId()}">
-                    <button class="btn btn-primary btn-sm">Trả</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Trả</button>
                 </form></td>
             </tr>
         </c:forEach>
