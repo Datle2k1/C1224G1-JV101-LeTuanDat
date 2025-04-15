@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Card {
     private String id;
-    private String idBook;
-    private String idStudent;
+    private Book book;
+    private Student student;
     private boolean status;
     private LocalDate dayBorrowed;
     private LocalDate dateReturn;
@@ -13,18 +13,18 @@ public class Card {
     public Card() {
     }
 
-    public Card(String idBook, String idStudent, boolean status, LocalDate dayBorrowed, LocalDate dateReturn) {
-        this.idBook = idBook;
-        this.idStudent = idStudent;
+    public Card(Book book, Student student, boolean status, LocalDate dayBorrowed, LocalDate dateReturn) {
+        this.book = book;
+        this.student = student;
         this.status = status;
         this.dayBorrowed = dayBorrowed;
         this.dateReturn = dateReturn;
     }
 
-    public Card(String id, String idBook, String idStudent, boolean status, LocalDate dayBorrowed, LocalDate dateReturn) {
+    public Card(String id, Book book, Student student, boolean status, LocalDate dayBorrowed, LocalDate dateReturn) {
         this.id = id;
-        this.idBook = idBook;
-        this.idStudent = idStudent;
+        this.book = book;
+        this.student = student;
         this.status = status;
         this.dayBorrowed = dayBorrowed;
         this.dateReturn = dateReturn;
@@ -38,20 +38,20 @@ public class Card {
         this.id = id;
     }
 
-    public String getIdBook() {
-        return idBook;
+    public Book getBook() {
+        return book;
     }
 
-    public void setIdBook(String idBook) {
-        this.idBook = idBook;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public String getIdStudent() {
-        return idStudent;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setIdStudent(String idStudent) {
-        this.idStudent = idStudent;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public boolean isStatus() {

@@ -18,38 +18,37 @@
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Form Mượn Sách</h2>
-    <form>
+    <form action="${pageContext.request.contextPath}/card" method="post">
         <div class="mb-3">
-            <label for="maMuonSach" class="form-label">Mã Mượn Sách</label>
-            <input type="text" class="form-control" id="maMuonSach" placeholder="${}" disabled>
+            <label for="idCard" class="form-label">Mã Mượn Sách</label>
+            <input type="text" class="form-control" name="idCard" id="idCard" value="${idCard}" readonly>
         </div>
         <div class="mb-3">
             <label for="tenSach" class="form-label">Tên Sách</label>
+            <input type="hidden" name="idBook" id="idBook" value="${book.id}">
             <input type="text" class="form-control" id="tenSach" placeholder="${book.name}" disabled>
         </div>
         <div class="mb-3">
-            <label for="tenHocSinh" class="form-label">Tên Học Sinh</label>
-            <select class="form-select" id="tenHocSinh">
+            <label for="idStudent" class="form-label">Tên Học Sinh</label>
+            <select name="idStudent" class="form-select" id="idStudent" required>
                 <c:forEach items="${students}" var="student">
-                    <option>${student.name}</option>
+                    <option value="${student.id}">${student.name}</option>
                 </c:forEach>
             </select>
         </div>
         <div class="mb-3">
-            <label for="ngayMuonSach" class="form-label">Ngày Mượn Sách</label>
-            <input type="date" class="form-control" id="ngayMuonSach" value="now" disabled>
+            <label for="dateBorrowed" class="form-label">Ngày Mượn Sách</label>
+            <input type="date" class="form-control" name="dateBorrowed" id="dateBorrowed" value="${now}"  readonly>
         </div>
         <div class="mb-3">
             <label for="ngayTraSach" class="form-label">Ngày Trả Sách</label>
-            <input type="date" class="form-control" id="ngayTraSach">
+            <input type="date" class="form-control" name="dateReturn" id="ngayTraSach" required>
         </div>
         <div class="d-flex justify-content-end">
-            <form action="${pageContext.request.contextPath}/card" method="post">
-                <input type="hidden" name="action" value="borrow">
-                <button type="submit" class="btn btn-primary me-2">Mượn Sách</button>
-            </form>
+            <input type="hidden" name="action" value="borrow">
+            <button type="submit" class="btn btn-primary me-2">Mượn Sách</button>
             <a href="${pageContext.request.contextPath}/all-book">
-                <button type="reset" class="btn btn-secondary">Hủy</button>
+                <button type="button" class="btn btn-secondary">Hủy</button>
             </a>
         </div>
     </form>

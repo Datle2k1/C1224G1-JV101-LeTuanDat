@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -43,13 +44,15 @@ public class LibraryServlet extends HttpServlet {
     }
 
     private void isBookAvailable(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         String idBook = req.getParameter("idBook");
         boolean isAvailable = libraryDao.isBookAvailable(idBook);
         if (!isAvailable) {
-            req.setAttribute("notAvailable",true);
+            req.setAttribute("notAvailable", true);
             req.getRequestDispatcher("view/library.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect("card&idBook=" + idBook);
+            session.setAttribute("idBook", idBook);
+            resp.sendRedirect("card");
         }
     }
 }

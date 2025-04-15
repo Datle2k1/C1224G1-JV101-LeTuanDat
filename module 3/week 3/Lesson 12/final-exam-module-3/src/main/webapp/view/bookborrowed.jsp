@@ -17,15 +17,6 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.IsBorrowed}">
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <div><p>Mượn thành công</p></div>
-        <a href="${pageContext.request.contextPath}/all-book">
-            <button type="button" class="btn-close" aria-label="Close"></button>
-        </a>
-    </div>
-</c:if>
-
 <c:if test="${notAvailable}">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <div><p>Lỗi !!!</p></div>
@@ -36,34 +27,40 @@
     </div>
 </c:if>
 
+<h2 class="text-center mb-4">Danh sách đã cho mượn</h2>
+
 <div class="container mt-5">
-    <h2 class="mb-4">Danh Sách Sách</h2>
-    <a href="${pageContext.request.contextPath}/book-borrowed">
-        <button class="button">Book Borrowed</button>
+    <a href="${pageContext.request.contextPath}/all-book">
+        <button class="button">All Book</button>
     </a>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
-            <th scope="col">Mã Sách</th>
+            <th scope="col">Mã mượn sách</th>
             <th scope="col">Tên Sách</th>
             <th scope="col">Tác Giả</th>
-            <th scope="col">Số Lượng</th>
-            <th scope="col">Mô Tả</th>
+            <th scope="col">Tên học sinh</th>
+            <th scope="col">Lớp</th>
+            <th scope="col">Ngày mượn</th>
+            <th scope="col">Ngày trả</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${books}" var="book">
+        <c:forEach items="${cards}" var="card">
             <tr>
-                <td>${book.getId()}</td>
-                <td>${book.getName()}</td>
-                <td>${book.getAuthor()}</td>
-                <td>${book.getQuantity()}</td>
-                <td>${book.getDescription()}</td>
-                <td><form action="${pageContext.request.contextPath}/all-book" method="post">
-                    <input type="hidden" name="action" value="borrow">
-                    <input type="hidden" name="idBook" value="${book.getId()}">
-                    <button class="btn btn-primary btn-sm">Mượn</button>
+                <td>${card.getId()}</td>
+                <td>${card.getBook().getName()}</td>
+                <td>${card.getBook().getAuthor()}</td>
+                <td>${card.getStudent().getName()}</td>
+                <td>${card.getStudent().getClasses()}</td>
+                <td>${card.getDayBorrowed()}</td>
+                <td>${card.getDateReturn()}</td>
+                <td><form action="${pageContext.request.contextPath}/book-borrowed" method="post">
+                    <input type="hidden" name="action" value="confirm">
+                    <input type="hidden" name="idCard" value="${card.getId()}">
+                    <input type="hidden" name="idBook" value="${card.getBook().getId()}">
+                    <button class="btn btn-primary btn-sm">Trả</button>
                 </form></td>
             </tr>
         </c:forEach>
