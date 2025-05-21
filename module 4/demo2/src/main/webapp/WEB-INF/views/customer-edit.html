@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Customer</title>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    th, td {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Edit Customer</h2>
+  <form th:action="@{/customers/update/{id}(id=${customer.id})}"
+        th:object="${customer}"
+        method="post">
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <td><input type="text" th:field="*{name}" class="form-control"/>
+          <span th:errors="*{name}" class="text-danger"></span></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><input type="email" th:field="*{email}" class="form-control"/>
+          <span th:errors="*{email}" class="text-danger"></span></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><input type="text" th:field="*{address}" class="form-control"/>
+          <span th:errors="*{address}" class="text-danger"></span></td>
+      </tr>
+      <tr>
+        <td><button type="submit" class="btn btn-primary">Save</button></td>
+        <td><a th:href="@{/customers}" class="btn btn-secondary">Cancel</a></td>
+      </tr>
+      <tr></tr>
+    </table>
+
+  </form>
+</div>
+</body>
+</html>

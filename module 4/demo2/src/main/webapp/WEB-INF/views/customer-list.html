@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer List</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        th, td {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Customer List</h2>
+    <a th:href="@{/customers/new}" class="btn btn-primary mb-3">Add New Customer</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.getId()}"></td>
+            <td th:text="${customer.getName()}"></td>
+            <td th:text="${customer.getEmail()}"></td>
+            <td th:text="${customer.getAddress()}"></td>
+            <td>
+                <a th:href="@{/customers/edit/{id}(id=${customer.getId()})}" class="btn btn-warning btn-sm">Edit</a>
+                <a th:href="@{/customers/delete/{id}(id=${customer.getId()})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

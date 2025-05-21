@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail-Media</title>
+</head>
+<body>
+<div th:fragment="detail-media" id="detail-media" class="container">
+    <!-- BÊN TRÁI -->
+    <div class="left-panel">
+        <a class="nav-button prev-btn">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </a>
+        <img id="mainImage" src="https://via.placeholder.com/800x600" alt="Ảnh">
+        <a class="nav-button next-btn">
+            <i class="fas fa-arrow-alt-circle-right"></i>
+        </a>
+    </div>
+
+    <!-- BÊN PHẢI -->
+    <div class="right-panel">
+        <!-- Phần trên -->
+        <div class="top-info">
+            <div class="user-info">
+                <img src="https://via.placeholder.com/40" alt="User">
+                <span><strong>Nguyễn Văn A</strong></span>
+            </div>
+            <div class="title" id="mediaTitle">Tiêu đề của ảnh</div>
+            <div class="description" id="mediaDescription">Mô tả ngắn gọn về nội dung ảnh đang hiển thị.
+            </div>
+            <button class="favorite-btn" title="Add to your favourite"><i class="fas fa-heart"></i></button>
+            <button class="favorite-btn" title="Follow this user for more"><i class="fas fa-bookmark"></i></button>
+        </div>
+
+        <!-- Phần comment -->
+        <div class="comments">
+            <div class="comment">
+                <img src="https://via.placeholder.com/30" alt="Commenter">
+                <div class="comment-content">
+                    Rất đẹp và ấn tượng!
+                    <div class="comment-time" data-time="2025-05-20T14:00:00Z"></div>
+                </div>
+            </div>
+
+            <div class="comment">
+                <img src="https://via.placeholder.com/30" alt="Commenter">
+                <div class="comment-content">
+                    Ảnh có chiều sâu và cảm xúc.
+                    <div class="comment-time" data-time="2025-05-18T08:30:00Z"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
