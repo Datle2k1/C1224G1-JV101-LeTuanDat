@@ -1,7 +1,7 @@
 package org.example.codegym.controller;
 
 import org.example.codegym.model.Promotion;
-import org.example.codegym.service.PromotionServiceImpl;
+import org.example.codegym.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PromotionController {
 
     @Autowired
-    private PromotionServiceImpl promotionServiceImpl;
+    private PromotionService promotionService;
 
     @GetMapping
     public String listPromotions(Model model,
@@ -31,9 +31,9 @@ public class PromotionController {
         LocalDate parsedEndDate = endDate != null && !endDate.isEmpty() ? LocalDate.parse(endDate) : null;
 
         if (discount != null || parsedStartDate != null || parsedEndDate != null) {
-            promotions = promotionServiceImpl.searchByAllConditions(discount, parsedStartDate, parsedEndDate);
+            promotions = promotionService.searchByAllConditions(discount, parsedStartDate, parsedEndDate);
         } else {
-            promotions = promotionServiceImpl.getAllPromotions();
+            promotions = promotionService.getAllPromotions();
         }
 
         model.addAttribute("promotions", promotions);
@@ -64,13 +64,13 @@ public class PromotionController {
             return "promotions/create";
         }
 
-        promotionServiceImpl.savePromotion(promotion);
+        promotionService.savePromotion(promotion);
         return "redirect:/promotions";
     }
 
     @GetMapping("/{id}/edit")
     public String showEditForm(@PathVariable Long id, Model model) {
-        Optional<Promotion> promotion = promotionServiceImpl.getPromotionById(id);
+        Optional<Promotion> promotion = promotionService.getPromotionById(id);
         if (promotion.isPresent()) {
             model.addAttribute("promotion", promotion.get());
             return "promotions/edit";
@@ -98,13 +98,13 @@ public class PromotionController {
         }
 
         promotion.setId(id);
-        promotionServiceImpl.savePromotion(promotion);
+        promotionService.savePromotion(promotion);
         return "redirect:/promotions";
     }
 
     @GetMapping("/{id}/delete")
     public String deletePromotion(@PathVariable Long id) {
-        promotionServiceImpl.deletePromotion(id);
+        promotionService.deletePromotion(id);
         return "redirect:/promotions";
     }
 }

@@ -11,12 +11,6 @@ import java.util.List;
 
 @Repository
 public interface PromotionRepository extends JpaRepository<Promotion, Long> {
-    List<Promotion> findByDiscount(Integer discount);
-
-    List<Promotion> findByStartDate(LocalDate startDate);
-
-    List<Promotion> findByEndDate(LocalDate endDate);
-
     @Query("SELECT p FROM Promotion p WHERE (:discount IS NULL OR p.discount = :discount) " +
             "AND (:startDate IS NULL OR p.startDate = :startDate) " +
             "AND (:endDate IS NULL OR p.endDate = :endDate)")
