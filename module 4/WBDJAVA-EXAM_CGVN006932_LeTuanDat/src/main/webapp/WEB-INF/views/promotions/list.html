@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Danh sách khuyến mãi</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function confirmDelete(element) {
@@ -11,67 +12,95 @@
       return confirm('Bạn có chắc chắn muốn xóa khuyến mãi: ' + title + ' không?');
     }
   </script>
+  <style>
+    /* Tùy chọn: Giới hạn chiều rộng tối đa của phần nội dung nếu cần */
+    .main-content {
+      max-width: 95%;
+    }
+  </style>
 </head>
 <body>
-<div class="container my-4">
-  <h1 class="mb-4">Danh sách khuyến mãi</h1>
+<div class="container-fluid my-4 px-4">
+  <div class="card shadow rounded main-content mx-auto">
+    <div class="card-body">
+      <h2 class="card-title text-primary mb-4">🎁 Danh sách khuyến mãi</h2>
 
-  <!-- Form tìm kiếm -->
-  <form th:action="@{/promotions}" method="get" class="mb-4">
-    <div class="row">
-      <div class="col-md-3">
-        <input type="number" class="form-control" id="discount" name="discount" placeholder="Mức giảm giá">
+      <!-- Form tìm kiếm -->
+      <form th:action="@{/promotions}" method="get" class="mb-4">
+        <div class="row g-2">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-percent"></i></span>
+              <input type="number" class="form-control" id="discount" name="discount" placeholder="Mức giảm giá">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+              <input type="date" class="form-control" id="startDate" name="startDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
+              <input type="date" class="form-control" id="endDate" name="endDate">
+            </div>
+          </div>
+        </div>
+        <div class="text-end mt-3">
+          <button type="submit" class="btn btn-success"><i class="bi bi-search"></i> Tìm kiếm</button>
+        </div>
+      </form>
+
+      <!-- Nút Thêm khuyến mãi -->
+      <div class="mb-3 text-end">
+        <a th:href="@{/promotions/create}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm khuyến mãi</a>
       </div>
-      <div class="col-md-3">
-        <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Ngày bắt đầu">
+
+      <!-- Bảng danh sách khuyến mãi -->
+      <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered">
+          <thead class="table-light text-center">
+          <tr>
+            <th>Tiêu đề</th>
+            <th>Thời gian bắt đầu</th>
+            <th>Thời gian kết thúc</th>
+            <th>Mức giảm giá</th>
+            <th>Chi tiết</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="promotion : ${promotions}">
+            <td th:text="${promotion.title}"></td>
+            <td th:text="${promotion.startDate != null} ? ${#temporals.format(promotion.startDate, 'dd/MM/yyyy')} : ''"></td>
+            <td th:text="${promotion.endDate != null} ? ${#temporals.format(promotion.endDate, 'dd/MM/yyyy')} : ''"></td>
+            <td th:text="${promotion.discount}"></td>
+            <td th:text="${promotion.description}"></td>
+            <td class="text-center">
+              <a th:href="@{/promotions/{id}/edit(id=${promotion.id})}" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil-square"></i>
+              </a>
+            </td>
+            <td class="text-center">
+              <a th:href="@{/promotions/{id}/delete(id=${promotion.id})}"
+                 th:attr="data-title=${promotion.title}"
+                 onclick="return confirmDelete(this)"
+                 class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <tr th:if="${promotions == null or promotions.isEmpty()}">
+            <td colspan="7" class="text-center text-muted">Không có khuyến mãi nào.</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-3">
-        <input type="date" class="form-control" id="endDate" name="endDate" placeholder="Ngày kết thúc">
-      </div>
-      <div class="col-md-3">
-        <button type="submit" class="btn btn-success">Tìm kiếm</button>
-      </div>
+
     </div>
-  </form>
-
-  <!-- Nút Thêm khuyến mãi -->
-  <a th:href="@{/promotions/create}" class="btn btn-primary mb-3">Thêm khuyến mãi</a>
-
-  <!-- Bảng danh sách khuyến mãi -->
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th>Tiêu đề</th>
-      <th>Thời gian bắt đầu</th>
-      <th>Thời gian kết thúc</th>
-      <th>Mức giảm giá</th>
-      <th>Chi tiết</th>
-      <th>Sửa</th>
-      <th>Xóa</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="promotion : ${promotions}">
-      <td th:text="${promotion.title}"></td>
-      <td th:text="${promotion.startDate != null} ? ${#temporals.format(promotion.startDate, 'dd/MM/yyyy')} : ''"></td>
-      <td th:text="${promotion.endDate != null} ? ${#temporals.format(promotion.endDate, 'dd/MM/yyyy')} : ''"></td>
-      <td th:text="${promotion.discount}"></td>
-      <td th:text="${promotion.description}"></td>
-      <td>
-        <a th:href="@{/promotions/{id}/edit(id=${promotion.id})}" class="btn btn-warning btn-sm">Sửa</a>
-      </td>
-      <td>
-        <a th:href="@{/promotions/{id}/delete(id=${promotion.id})}"
-           th:attr="data-title=${promotion.title}"
-           onclick="return confirmDelete(this)"
-           class="btn btn-danger btn-sm">Xóa</a>
-      </td>
-    </tr>
-    <tr th:if="${promotions == null or promotions.isEmpty()}">
-      <td colspan="7" class="text-center">Không có khuyến mãi nào.</td>
-    </tr>
-    </tbody>
-  </table>
+  </div>
 </div>
 </body>
 </html>

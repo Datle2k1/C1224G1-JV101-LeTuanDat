@@ -13,7 +13,7 @@ public class Promotion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Tiêu đề không được để trống")
+    @NotBlank(message = "Tiêu đề không thể để trống")
     @Column(name = "title")
     private String title;
 
