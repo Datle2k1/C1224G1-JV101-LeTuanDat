@@ -1,7 +1,5 @@
 package org.example.codegym.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -10,9 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "promotions")
-@Data
 public class Promotion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
