@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Đa Thành Phần</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans" style="background-color: #00BFF2">
+<!-- Navbar -->
+<nav class="bg-blue-600 text-white fixed w-full top-0 shadow-md z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="text-2xl font-bold">Logo</div>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-gray-200">Trang chủ</a>
+                <a href="#" class="hover:text-gray-200">Sản phẩm</a>
+                <a href="#" class="hover:text-gray-200">Liên hệ</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white pt-16">
+    <div class="text-center max-w-3xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Chào mừng đến với Trang Web của Chúng Tôi</h1>
+        <p class="text-lg md:text-xl mb-6">Khám phá các sản phẩm và dịch vụ tuyệt vời của chúng tôi với giao diện hiện đại và thân thiện.</p>
+        <button id="hero-btn" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 transition-colors duration-300">
+            Bắt đầu ngay
+        </button>
+    </div>
+</section>
+
+<!-- Card Section -->
+<section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">Sản phẩm nổi bật</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 1" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sản phẩm 1</h3>
+                    <p class="text-gray-600 mb-4">Mô tả ngắn về sản phẩm 1, chất lượng cao và giá cả phải chăng.</p>
+                    <button class="card-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Xem chi tiết</button>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 2" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sản phẩm 2</h3>
+                    <p class="text-gray-600 mb-4">Mô tả ngắn về sản phẩm 2, thiết kế hiện đại và tiện dụng.</p>
+                    <button class="card-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Xem chi tiết</button>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 3" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sản phẩm 3</h3>
+                    <p class="text-gray-600 mb-4">Mô tả ngắn về sản phẩm 3, phù hợp cho mọi nhu cầu.</p>
+                    <button class="card-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Xem chi tiết</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-lg mb-2">Liên hệ: contact@example.com | Phone: (123) 456-7890</p>
+        <p>&copy; 2025 Trang Web. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // JavaScript cho tương tác
+    const heroButton = document.getElementById('hero-btn');
+    heroButton.addEventListener('click', () => {
+        alert('Chào mừng bạn! Hãy khám phá các sản phẩm của chúng tôi!');
+    });
+
+    const cardButtons = document.querySelectorAll('.card-btn');
+    cardButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            alert(`Bạn đã nhấp vào sản phẩm ${index + 1}!`);
+        });
+    });
+</script>
+</body>
+</html>
