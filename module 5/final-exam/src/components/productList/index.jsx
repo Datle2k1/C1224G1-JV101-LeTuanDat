@@ -1,4 +1,4 @@
-import React, {startTransition, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,9 @@ function ProductList() {
 
     useEffect(() => {
         productService.getAllCategories().then(res => {
-            setCategories(res.data);
+            setCategories(res.data.map(it => {
+                return it.name;
+            }));
         })
     }, []);
 

@@ -23,8 +23,9 @@ function ProductCreate() {
         });
 
         productService.getAllCategories().then(res => {
-            setCategories(res.data);
-        })
+            setCategories(res.data.map(it => {
+                return it.name;
+            }));        })
     }, []);
 
     const formik = useFormik({

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useFormik} from "formik";
 import * as Yup from "yup";
@@ -23,7 +23,9 @@ function ProductEdit() {
 
     useEffect(() => {
         productService.getAllCategories().then(res => {
-            setCategories(res.data);
+            setCategories(res.data.map(it => {
+                return it.name;
+            }));
         })
     }, []);
 
