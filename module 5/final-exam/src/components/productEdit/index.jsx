@@ -51,7 +51,20 @@ function ProductEdit() {
                 .max(new Date(), "Ngày nhập không được lớn hơn hôm nay")
         }),
         onSubmit: (values) => {
-            ProductService.updateProduct(values, id).then(() => {
+            const date = new Date(values.importDate);
+
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+
+            const formattedDate = `${day}/${month}/${year}`; // dd/MM/yyyy
+
+            const formattedValues = {
+                ...values,
+                importDate: formattedDate,
+            };
+
+            ProductService.updateProduct(formattedValues, id).then(() => {
                 toast.success("Cập nhật sản phẩm thành công");
                 navigate("/products");
             });
